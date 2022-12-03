@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ventaentrada', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('cod_venta')->primary();
+            $table->string('cod_evento');
+            $table->string('cod_cliente');
+            $table->integer('total');
+	        $table->softDeletes();
         });
     }
 
