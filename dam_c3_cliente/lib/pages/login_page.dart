@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   final List<bool> isSelected = [true, false];
   bool esAdmin = true;
   bool ocultarPasswd = true;
+  Icon eye = Icon(MdiIcons.eye);
 //Toggle Button
   late double xAlign;
   late Color loginColor;
@@ -51,7 +52,9 @@ class _LoginPageState extends State<LoginPage> {
                     fontFamily: 'Raleway',
                     fontWeight: FontWeight.w900),
               ),
-              Divider(),
+              Divider(
+                color: Colors.transparent,
+              ),
               Text(
                 '¡¡Bienvenido, seleccione una opción!!',
                 style: TextStyle(
@@ -60,41 +63,48 @@ class _LoginPageState extends State<LoginPage> {
                     fontFamily: 'Raleway',
                     fontWeight: FontWeight.w500),
               ),
-              Divider(),
+              Divider(
+                color: Colors.transparent,
+              ),
               ToggleButton(),
-              Divider(),
+              Divider(
+                color: Colors.transparent,
+              ),
               Container(
                 height: 250,
                 width: 350,
                 decoration: BoxDecoration(
                   color: Color(kAccentColor1),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Form(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300, fontSize: 20),
-                          decoration: InputDecoration(
-                              border: InputBorder.none, labelText: 'Correo'),
-                        ),
-                      ),
                       Divider(
                         color: Colors.transparent,
                       ),
                       Expanded(
                         child: Row(
                           children: [
+                            Padding(padding: EdgeInsets.all(6)),
+                            Expanded(
+                              child: TextFormField(
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300, fontSize: 20),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    labelText: 'Correo'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Padding(padding: EdgeInsets.all(6)),
                             Expanded(
                               child: TextFormField(
                                 textAlign: TextAlign.center,
@@ -106,21 +116,19 @@ class _LoginPageState extends State<LoginPage> {
                                 obscureText: ocultarPasswd,
                               ),
                             ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Color(kBackgroundColor)),
-                              onPressed: () {
-                                setState(() {
-                                  if (!ocultarPasswd) {
-                                    ocultarPasswd = true;
-                                  } else {
-                                    ocultarPasswd = false;
-                                  }
-                                });
-                              },
-                              child: Icon(MdiIcons.eye,
-                                  color: Color(kPrimaryColor)),
-                            ),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (!ocultarPasswd) {
+                                      ocultarPasswd = true;
+                                      eye = Icon(MdiIcons.eye);
+                                    } else {
+                                      ocultarPasswd = false;
+                                      eye = Icon(MdiIcons.eyeOff);
+                                    }
+                                  });
+                                },
+                                icon: eye)
                           ],
                         ),
                       ),
@@ -135,11 +143,16 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.transparent,
               ),
               Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 30, right: 30),
+                width: width,
+                height: height,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50.0))),
                 child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(primary: Color(kSecundaryColor)),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color(kSecundaryColor),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(50.0)))),
                   child: Text('INICIAR SESIÓN'),
                   onPressed: () {},
                 ),
