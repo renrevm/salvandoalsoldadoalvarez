@@ -20,6 +20,7 @@ const Color normalColor = Colors.white;
 class _LoginPageState extends State<LoginPage> {
   final List<bool> isSelected = [true, false];
   bool esAdmin = true;
+  bool ocultarPasswd = true;
 //Toggle Button
   late double xAlign;
   late Color loginColor;
@@ -102,17 +103,23 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     labelText: 'Contraseña'),
-                                obscureText: true,
+                                obscureText: ocultarPasswd,
                               ),
                             ),
-                            Expanded(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color(kBackgroundColor)),
-                                onPressed: () {},
-                                child: Icon(MdiIcons.eye,
-                                    color: Color(kPrimaryColor)),
-                              ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Color(kBackgroundColor)),
+                              onPressed: () {
+                                setState(() {
+                                  if (!ocultarPasswd) {
+                                    ocultarPasswd = true;
+                                  } else {
+                                    ocultarPasswd = false;
+                                  }
+                                });
+                              },
+                              child: Icon(MdiIcons.eye,
+                                  color: Color(kPrimaryColor)),
                             ),
                           ],
                         ),
