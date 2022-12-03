@@ -79,26 +79,43 @@ class _LoginPageState extends State<LoginPage> {
                       Divider(
                         color: Colors.transparent,
                       ),
-                      TextFormField(
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 20),
-                        decoration: InputDecoration(
-                            border: InputBorder.none, labelText: 'Correo'),
+                      Expanded(
+                        child: TextFormField(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 20),
+                          decoration: InputDecoration(
+                              border: InputBorder.none, labelText: 'Correo'),
+                        ),
                       ),
                       Divider(
                         color: Colors.transparent,
                       ),
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      TextFormField(
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 20),
-                        decoration: InputDecoration(
-                            border: InputBorder.none, labelText: 'Contraseña'),
-                        obscureText: true,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300, fontSize: 20),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    labelText: 'Contraseña'),
+                                obscureText: true,
+                              ),
+                            ),
+                            Expanded(
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(kBackgroundColor)),
+                                onPressed: () {},
+                                child: Icon(MdiIcons.eye,
+                                    color: Color(kPrimaryColor)),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Divider(
                         color: Colors.transparent,
