@@ -1,4 +1,5 @@
 import 'package:dam_c3_cliente/constant.dart';
+import 'package:dam_c3_cliente/pages/home_admin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -117,7 +118,12 @@ class _LoginPageState extends State<LoginPage> {
                   style:
                       ElevatedButton.styleFrom(primary: Color(kSecundaryColor)),
                   child: Text('INICIAR SESIÓN'),
-                  onPressed: () {},
+                  onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)=> HomeAdminPage())
+                  );
+                  },
                 ),
               ),
               //    primary: Color(kTerciaryColor),
