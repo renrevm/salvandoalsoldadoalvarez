@@ -1,4 +1,5 @@
 import 'package:dam_c3_cliente/constant.dart';
+import 'package:dam_c3_cliente/pages/home_admin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -154,7 +155,12 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius:
                               BorderRadius.all(Radius.circular(50.0)))),
                   child: Text('INICIAR SESIÓN'),
-                  onPressed: () {},
+                  onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)=> HomeAdminPage())
+                  );
+                  },
                 ),
               ),
               //    primary: Color(kTerciaryColor),
