@@ -1,7 +1,13 @@
 import 'package:dam_c3_cliente/constant.dart';
+import 'package:dam_c3_cliente/services/authentificator.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:dam_c3_cliente/pages/home_admin_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// cd a android y .\gradlew signingReport para encontrar huella digital sh1
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -23,6 +29,13 @@ class _LoginPageState extends State<LoginPage> {
   bool esAdmin = true;
   bool ocultarPasswd = true;
   Icon eye = Icon(MdiIcons.eye);
+  String error = '';
+
+//Login con correo
+  final formKey = GlobalKey<FormState>();
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
+
 //Toggle Button
   late double xAlign;
   late Color loginColor;
@@ -38,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    //Firebase.initializeApp();
     return Scaffold(
       body: Container(
         decoration: kContainerDegrade,
@@ -133,6 +147,15 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        alignment: Alignment.center,
+                        width: double.infinity,
+                        child: Text(
+                          error,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
                       Divider(
                         color: Colors.transparent,
                       ),
@@ -150,16 +173,20 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.all(Radius.circular(50.0))),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: Color(kSecundaryColor),
+                      backgroundColor: Color(kSecundaryColor),
                       shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(50.0)))),
                   child: Text('INICIAR SESIÓN'),
-                  onPressed: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> HomeAdminPage())
-                  );
+                  onPressed: () async {
+                    User? user =
+                        await Authentificator.iniciarSesion(context: context);
+                    print(user?.displayName);
+                    //Navegación
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeAdminPage()));
                   },
                 ),
               ),
@@ -258,4 +285,39 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  /*void login() async{
+    try {
+      //intentar hacer login
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailCtrl.text.trim(),
+        password: passwordCtrl.text.trim(),
+      );
+      // si llego aca credenciales ok
+      //guardar user email
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      sp.setString('userEmail', userCredential.user!.email.toString());
+      //redirigir al home
+      MaterialPageRoute route =MaterialPageRoute(builder: (context) => HomePage());
+      Navigator.pushReplacement(context, route);
+    } on FirebaseAuthException catch (ex) {
+      //si el login falla cae aca
+      switch (ex.code) {
+        case 'user-not-found':
+          error = 'Usuario no existe';
+          break;
+        case 'wrong-password':
+          error = 'Contraseña incorrecta';
+          break;
+        case 'user-disabled':
+          error = 'Cuenta desactivada';
+          break;
+        default:
+          error = ex.message.toString();
+          break;
+      }
+      setState(() {});
+    }
+  }*/
 }
