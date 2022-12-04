@@ -5,7 +5,11 @@ import 'package:dam_c3_cliente/adminpages/cambiar_estado_eventos_page.dart';
 import 'package:dam_c3_cliente/adminpages/informacion_eventos_page.dart';
 import 'package:dam_c3_cliente/adminpages/listar_eventos_page.dart';
 import 'package:dam_c3_cliente/adminpages/publicar_noticias_page.dart';
+import 'package:dam_c3_cliente/services/authentificator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'login_page.dart';
 
 class HomeAdminPage extends StatefulWidget {
   const HomeAdminPage({key});
@@ -64,12 +68,23 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
             ElevatedButton(
               child: Text('Cerrar sesion'),
               onPressed: () {
-                Navigator.pop(context);
+                //Navigator.pop(context);
+                logout(context);
               },
             ),
           ],
         ),
       ),
     );
+  }
+
+  void logout(BuildContext context) async {
+    //cerrar sesion en firebase
+    await FirebaseAuth.instance.signOut();
+    Authentificator().signOutGoogle();
+    //redirigir al login
+    MaterialPageRoute route =
+        MaterialPageRoute(builder: ((context) => LoginPage()));
+    Navigator.pushReplacement(context, route);
   }
 }

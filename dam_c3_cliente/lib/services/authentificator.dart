@@ -31,4 +31,9 @@ class Authentificator {
       }
     }
   }
+
+  Future<void> signOutGoogle() async {
+    GoogleSignIn objGoogleSignIn = GoogleSignIn();
+    await objGoogleSignIn.signOut();
+  }
 }
