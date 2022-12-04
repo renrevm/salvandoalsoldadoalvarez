@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    //Firebase.initializeApp();
+    Firebase.initializeApp();
     return Scaffold(
       body: Container(
         decoration: kContainerDegrade,

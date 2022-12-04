@@ -20,28 +20,25 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text('Evento', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-           
-            
-            RaisedButton(
+            Text(
+              'Evento',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
               child: Row(
                 children: [
                   Text('Aceptar'),
                   Icon(Icons.arrow_forward_ios),
                 ],
-
               ),
-              onPressed: ()=>{},
-               
+              onPressed: () => {},
             ),
-             RaisedButton(
+            ElevatedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-                
               },
             ),
-            
           ],
         ),
       ),

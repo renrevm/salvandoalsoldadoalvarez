@@ -28,39 +28,37 @@ class _HomeClientPageState extends State<HomeClientPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RaisedButton(
+            ElevatedButton(
               child: Text('Comprar entradas'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> ComprarEntradasPage())
-
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ComprarEntradasPage())),
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Listado de entradas compradas'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> ListarEntradasCompPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ListarEntradasCompPage())),
               },
             ),
-             RaisedButton(
+            ElevatedButton(
               child: Text('Ir a portada de noticias'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> PortadaNoticiasPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PortadaNoticiasPage())),
               },
             ),
-             RaisedButton(
+            ElevatedButton(
               child: Text('Cerrar sesion'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-                
               },
             ),
           ],

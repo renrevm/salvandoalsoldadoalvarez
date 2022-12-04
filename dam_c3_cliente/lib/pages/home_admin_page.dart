@@ -25,48 +25,46 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RaisedButton(
+            ElevatedButton(
               child: Text('ir a Listar Eventos'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> ListarEventosPage())
-
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ListarEventosPage())),
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('ir a Cambiar estado de un Evento'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> CambiarEstadoEventosPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CambiarEstadoEventosPage())),
               },
             ),
-             RaisedButton(
+            ElevatedButton(
               child: Text('obtener informacion de eventos'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> InformacionEventosPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InformacionEventosPage())),
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Publicar noticias para portada'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> PublicarNoticiasPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PublicarNoticiasPage())),
               },
             ),
-             RaisedButton(
+            ElevatedButton(
               child: Text('Cerrar sesion'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-                
               },
             ),
           ],

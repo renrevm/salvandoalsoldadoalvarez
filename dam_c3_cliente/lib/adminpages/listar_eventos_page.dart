@@ -23,45 +23,43 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text('Eventos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-
-
-            RaisedButton(
+            Text(
+              'Eventos',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
               child: Text('Agregar un Nuevo Evento'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> AgregarEventosPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AgregarEventosPage())),
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Editar un Nuevo Evento'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> EditarEventosPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EditarEventosPage())),
               },
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Borrar un Nuevo Evento'),
-              onPressed: ()=>{
+              onPressed: () => {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> BorrarEventosPage())
-                ),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BorrarEventosPage())),
               },
             ),
-            
-            RaisedButton(
+            ElevatedButton(
               child: Text('Volver al menu principal'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-                
               },
             ),
-            
           ],
         ),
       ),
