@@ -1,10 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
-import 'package:dam_c3_cliente/adminpages/agregar_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/cambiar_estado_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/informacion_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/listar_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/publicar_noticias_page.dart';
 import 'package:dam_c3_cliente/clientpages/comprar_entradas_page.dart';
 import 'package:dam_c3_cliente/clientpages/listar_entradas_comp_page.dart';
 import 'package:dam_c3_cliente/clientpages/portada_noticias_page.dart';
@@ -24,41 +18,44 @@ class _HomeClientPageState extends State<HomeClientPage> {
       appBar: AppBar(
         title: Text('Cliente'),
       ),
+      
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+            RaisedButton(
               child: Text('Comprar entradas'),
-              onPressed: () => {
+              onPressed: ()=>{
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ComprarEntradasPage())),
+                  context,
+                  MaterialPageRoute(builder: (context)=> ComprarEntradasPage())
+
+                ),
               },
             ),
-            ElevatedButton(
+            RaisedButton(
               child: Text('Listado de entradas compradas'),
-              onPressed: () => {
+              onPressed: ()=>{
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ListarEntradasCompPage())),
+                  context,
+                  MaterialPageRoute(builder: (context)=> ListarEntradasCompPage())
+                ),
               },
             ),
-            ElevatedButton(
+             RaisedButton(
               child: Text('Ir a portada de noticias'),
-              onPressed: () => {
+              onPressed: ()=>{
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PortadaNoticiasPage())),
+                  context,
+                  MaterialPageRoute(builder: (context)=> PortadaNoticiasPage())
+                ),
               },
             ),
-            ElevatedButton(
+             RaisedButton(
               child: Text('Cerrar sesion'),
-              onPressed: () {
+              onPressed: (){
                 Navigator.pop(context);
+                
               },
             ),
           ],

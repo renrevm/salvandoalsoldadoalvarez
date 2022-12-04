@@ -20,16 +20,16 @@ class _DetalleEntradaPageState extends State<DetalleEntradaPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text(
-              'Entrada: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
+            Text('Entrada: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+
+             RaisedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: () {
+              onPressed: (){
                 Navigator.pop(context);
+                
               },
             ),
+            
           ],
         ),
       ),

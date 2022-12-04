@@ -20,25 +20,28 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text(
-              'entradas para eventos: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
+            Text('entradas para eventos: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+           
+            
+            RaisedButton(
               child: Row(
                 children: [
                   Text('Aceptar'),
                   Icon(Icons.arrow_forward_ios),
                 ],
+
               ),
-              onPressed: () => {},
+              onPressed: ()=>{},
+               
             ),
-            ElevatedButton(
+             RaisedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: () {
+              onPressed: (){
                 Navigator.pop(context);
+                
               },
             ),
+            
           ],
         ),
       ),

@@ -21,25 +21,26 @@ class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text(
-              'Eventos vigentes o finalizados: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
+            Text('Eventos vigentes o finalizados: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+           
+            
+            RaisedButton(
               child: Text('Ver detalle de entrada'),
-              onPressed: () => {
+              onPressed: ()=>{
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetalleEntradaPage())),
+                  context,
+                  MaterialPageRoute(builder: (context)=> DetalleEntradaPage())
+                ),
               },
             ),
-            ElevatedButton(
+             RaisedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: () {
+              onPressed: (){
                 Navigator.pop(context);
+                
               },
             ),
+            
           ],
         ),
       ),

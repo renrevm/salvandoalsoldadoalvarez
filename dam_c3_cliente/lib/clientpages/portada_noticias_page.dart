@@ -20,25 +20,28 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text(
-              'Noticias de la empresa: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
+            Text('Noticias de la empresa: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+           
+            
+            RaisedButton(
               child: Row(
                 children: [
                   Text('Aceptar'),
                   Icon(Icons.arrow_forward_ios),
                 ],
+
               ),
-              onPressed: () => {},
+              onPressed: ()=>{},
+               
             ),
-            ElevatedButton(
+             RaisedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: () {
+              onPressed: (){
                 Navigator.pop(context);
+                
               },
             ),
+            
           ],
         ),
       ),
