@@ -10,7 +10,6 @@ import '../pages/home_administrador_page.dart';
 
 import '../widgets/muestra.dart';
 
-
 class ListarEventosTryPage extends StatefulWidget {
   const ListarEventosTryPage({key});
 
@@ -28,74 +27,75 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
       drawer: MenuPage(),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: NetworkImage("https://i.pinimg.com/736x/87/bd/99/87bd99186c153f0edbb2f69cc6cb773b.jpg",
-          ),fit: BoxFit.cover),
-          
+          image: DecorationImage(
+              image: NetworkImage(
+                "https://i.pinimg.com/736x/87/bd/99/87bd99186c153f0edbb2f69cc6cb773b.jpg",
+              ),
+              fit: BoxFit.cover),
         ),
         child: GridView.count(
           crossAxisCount: 2,
-          childAspectRatio: 4 / 3,//relacion de aspecto
+          childAspectRatio: 4 / 3, //relacion de aspecto
           children: <Widget>[
             muestra(
-              child:  RaisedButton(
+              child: ElevatedButton(
                 child: Text('Agregar Evento'),
-                onPressed: (){
+                onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> AgregarEventosPage())
-
-                );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AgregarEventosPage()));
                 },
-                color: Colors.blueAccent.shade200,
-                textColor: Colors.white,
+                //color: Colors.blueAccent.shade200,
+                //textColor: Colors.white,
               ),
-              text: 'Agregar un evento nuevo, con  sus respectivas entradas a la venta.',
+              text:
+                  'Agregar un evento nuevo, con  sus respectivas entradas a la venta.',
             ),
             muestra(
-              child:  RaisedButton(
+              child: ElevatedButton(
                 child: Text('Editar Evento'),
-                onPressed: (){
+                onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> EditarEventosPage())
-
-                );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditarEventosPage()));
                 },
-                color: Colors.blueAccent.shade200,
-                textColor: Colors.white,
+                //color: Colors.blueAccent.shade200,
+                //textColor: Colors.white,
               ),
               text: 'Edita un evento que se encuentre en estado vigente.',
             ),
             muestra(
-              child:  RaisedButton(
-                child: Text('Borrar Evento',textAlign: TextAlign.center,),
-                onPressed: (){
+              child: ElevatedButton(
+                child: Text(
+                  'Borrar Evento',
+                  textAlign: TextAlign.center,
+                ),
+                onPressed: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)=> BorrarEventosPage())
-
-                );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BorrarEventosPage()));
                 },
-                color: Colors.blueAccent.shade200,
-                textColor: Colors.white,
+                //color: Colors.blueAccent.shade200,
+                //textColor: Colors.white,
               ),
-              text: 'Elimina un evento y sus entradas disponibles para la venta del listado.',
-            ),              
+              text:
+                  'Elimina un evento y sus entradas disponibles para la venta del listado.',
+            ),
             muestra(
-              child:  RaisedButton(
+              child: ElevatedButton(
                 child: Text('Volver al menu anterior.'),
-                onPressed: (){
-                  Navigator.pop(context);        
+                onPressed: () {
+                  Navigator.pop(context);
                 },
-                color: Colors.red,
-                textColor: Colors.white,
+                //color: Colors.red,
+                //textColor: Colors.white,
               ),
               text: '',
-            ),    
-            
-
+            ),
           ],
-
         ),
       ),
     );

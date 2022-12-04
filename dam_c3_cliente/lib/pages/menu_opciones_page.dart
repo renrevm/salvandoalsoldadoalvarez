@@ -22,9 +22,9 @@ class _MenuOpcionesPageState extends State<MenuOpcionesPage> {
           children: [
             Text('Nombre de usuario:'),
             Text('Gonzalo'),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Volver al menu principal'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
               },
             ),

@@ -1,7 +1,7 @@
 import 'package:dam_c3_cliente/constant.dart';
+import 'package:dam_c3_cliente/pages/home_administrador_page.dart';
 import 'package:dam_c3_cliente/services/authentificator.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:dam_c3_cliente/pages/home_admin_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -182,11 +182,14 @@ class _LoginPageState extends State<LoginPage> {
                     User? user =
                         await Authentificator.iniciarSesion(context: context);
                     print(user?.displayName);
+                    print(user?.email);
+                    print(user?.photoURL);
+                    //String? nombre = user?.displayName;
                     //Navegación
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => HomeAdminPage()));
+                            builder: (context) => HomeAdministradorPage()));
                   },
                 ),
               ),

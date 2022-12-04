@@ -3,8 +3,6 @@
 import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
-
-
 class AgregarEventosPage extends StatefulWidget {
   const AgregarEventosPage({key});
 
@@ -24,28 +22,25 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text('Eventos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-           
-            
-            RaisedButton(
+            Text(
+              'Eventos',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
               child: Row(
                 children: [
                   Text('Aceptar'),
                   Icon(Icons.arrow_forward_ios),
                 ],
-
               ),
-              onPressed: ()=>{},
-               
+              onPressed: () => {},
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-                
               },
             ),
-            
           ],
         ),
       ),

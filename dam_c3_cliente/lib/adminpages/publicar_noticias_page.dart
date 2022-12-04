@@ -3,7 +3,6 @@
 import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
-
 class PublicarNoticiasPage extends StatefulWidget {
   const PublicarNoticiasPage({key});
 
@@ -23,28 +22,25 @@ class _PublicarNoticiasPageState extends State<PublicarNoticiasPage> {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            Text('Noticia', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-           
-            
-            RaisedButton(
+            Text(
+              'Noticia',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
               child: Row(
                 children: [
                   Text('Aceptar'),
                   Icon(Icons.arrow_forward_ios),
                 ],
-
               ),
-              onPressed: ()=>{},
-               
+              onPressed: () => {},
             ),
-             RaisedButton(
+            ElevatedButton(
               child: Text('Volver al menu anterior'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-                
               },
             ),
-            
           ],
         ),
       ),

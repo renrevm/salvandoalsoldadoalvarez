@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+
 class MenuPerfilPage extends StatefulWidget {
   const MenuPerfilPage({key});
 
@@ -21,9 +22,9 @@ class _MenuPerfilPageState extends State<MenuPerfilPage> {
           children: [
             Text('Nombre de usuario:'),
             Text('Gonzalo'),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Volver al menu principal'),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
               },
             ),
