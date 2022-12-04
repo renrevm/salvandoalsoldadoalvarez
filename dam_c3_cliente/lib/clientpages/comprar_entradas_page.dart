@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../pages/menu_page.dart';
+
 class ComprarEntradasPage extends StatefulWidget {
   const ComprarEntradasPage({key});
 
@@ -16,6 +18,7 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
       appBar: AppBar(
         title: Text('Comprar entradas'),
       ),
+      drawer: MenuPage(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

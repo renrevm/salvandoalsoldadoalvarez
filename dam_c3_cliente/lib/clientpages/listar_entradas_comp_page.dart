@@ -3,6 +3,8 @@
 import 'package:dam_c3_cliente/clientpages/detalle_entrada_page.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/menu_page.dart';
+
 class ListarEntradasCompPage extends StatefulWidget {
   const ListarEntradasCompPage({key});
 
@@ -17,6 +19,7 @@ class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
       appBar: AppBar(
         title: Text('Listado de Compra de entradas'),
       ),
+      drawer: MenuPage(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

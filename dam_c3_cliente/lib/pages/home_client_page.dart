@@ -4,6 +4,9 @@ import 'package:dam_c3_cliente/clientpages/listar_entradas_comp_page.dart';
 import 'package:dam_c3_cliente/clientpages/portada_noticias_page.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/muestra.dart';
+import 'menu_page.dart';
+
 class HomeClientPage extends StatefulWidget {
   const HomeClientPage({key});
 
@@ -17,47 +20,115 @@ class _HomeClientPageState extends State<HomeClientPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cliente'),
+        backgroundColor: Color.fromARGB(255, 89, 66, 221),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              child: Text('Comprar entradas'),
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ComprarEntradasPage())),
-              },
+      drawer: MenuPage(),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                "https://i.pinimg.com/736x/60/a2/97/60a297dfc62787d61cec7004521e54b7.jpg",
+              ),
+              fit: BoxFit.cover),
+        ),
+        child: GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: 4 / 3, //relacion de aspecto
+          children: <Widget>[
+            muestra(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: getColor(Colors.white, Colors.yellow),
+                  backgroundColor: getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
+                ),
+                child: Text('Comprar Entradas'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ComprarEntradasPage()));
+                },
+
+                //color: Colors.purpleAccent,
+                //textColor: Colors.white,
+              ),
+              text:
+                  'Muestra el listado de eventos vigentes y sus respectivas entradas para la compra.',
             ),
-            ElevatedButton(
-              child: Text('Listado de entradas compradas'),
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ListarEntradasCompPage())),
-              },
+            muestra(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: getColor(Colors.white, Colors.yellow),
+                  backgroundColor: getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
+                ),
+                child: Text('Listado de entradas'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ListarEntradasCompPage()));
+                },
+                //color: Colors.purpleAccent,
+                //textColor: Colors.white,
+              ),
+              text:
+                  'Muestra el listado de todas las entradas compradas para eventos vigentes o finalizados.',
             ),
-            ElevatedButton(
-              child: Text('Ir a portada de noticias'),
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PortadaNoticiasPage())),
-              },
+            muestra(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: getColor(Colors.white, Colors.yellow),
+                  backgroundColor: getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
+                ),
+                child: Text(
+                  'Ir a portada de noticias',
+                  textAlign: TextAlign.center,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PortadaNoticiasPage()));
+                },
+                //color: Colors.purpleAccent,
+                //textColor: Colors.white,
+              ),
+              text:
+                  'Muestra la portada de noticias de la empresa donde encontrara futuros eventos e informacion de entradas.',
             ),
-            ElevatedButton(
-              child: Text('Cerrar sesion'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            
+            muestra(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: getColor(Colors.white, Colors.yellow),
+                  backgroundColor: getColor(Colors.red, Colors.black),
+                ),
+                child: Text('Cerrar Sesion'),
+                
+                onPressed: () {
+                  //logout(context);
+                },
+                
+                //color: Colors.red,
+                //textColor: Colors.white,
+              ),
+              text: '',
             ),
           ],
         ),
       ),
     );
+  }
+
+  MaterialStateProperty<Color> getColor(Color color, Color colorPressed) {
+    final getcolor = (Set<MaterialState> states){
+      if (states.contains(MaterialState.pressed)){
+        return colorPressed;
+      }  else{
+        return color;
+      }
+
+    };
+    return MaterialStateProperty.resolveWith(getcolor);
   }
 }

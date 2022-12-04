@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../pages/menu_page.dart';
+
 class PortadaNoticiasPage extends StatefulWidget {
   const PortadaNoticiasPage({key});
 
@@ -16,6 +18,7 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
       appBar: AppBar(
         title: Text('Portada de interes'),
       ),
+      drawer: MenuPage(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
