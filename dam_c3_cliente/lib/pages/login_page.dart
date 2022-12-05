@@ -4,9 +4,12 @@ import 'package:dam_c3_cliente/services/authentificator.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'home_client_page.dart';
 // cd a android y .\gradlew signingReport para encontrar huella digital sh1
 
 class LoginPage extends StatefulWidget {
@@ -70,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                     'APP DE EVENTOS',
                     style: TextStyle(
                         color: Color(kAccentColor1),
-                        fontSize: 40,
+                        fontSize: 25,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w900),
                   ),
@@ -135,12 +138,17 @@ class _LoginPageState extends State<LoginPage> {
                       print(user?.displayName);
                       print(user?.email);
                       print(user?.photoURL);
-                      //String? nombre = user?.displayName;
-                      //Navegación
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeAdministradorPage()));
+                      if (user?.displayName == 'vicente paez') {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeAdministradorPage()));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeClientPage()));
+                      }
                     },
                   ),
                 ),

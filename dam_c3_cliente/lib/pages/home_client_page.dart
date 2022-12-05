@@ -2,9 +2,12 @@
 import 'package:dam_c3_cliente/clientpages/comprar_entradas_page.dart';
 import 'package:dam_c3_cliente/clientpages/listar_entradas_comp_page.dart';
 import 'package:dam_c3_cliente/clientpages/portada_noticias_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../services/authentificator.dart';
 import '../widgets/muestra.dart';
+import 'login_page.dart';
 import 'menu_page.dart';
 
 class HomeClientPage extends StatefulWidget {
@@ -39,7 +42,8 @@ class _HomeClientPageState extends State<HomeClientPage> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   foregroundColor: getColor(Colors.white, Colors.yellow),
-                  backgroundColor: getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
+                  backgroundColor:
+                      getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
                 ),
                 child: Text('Comprar Entradas'),
                 onPressed: () {
@@ -59,7 +63,8 @@ class _HomeClientPageState extends State<HomeClientPage> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   foregroundColor: getColor(Colors.white, Colors.yellow),
-                  backgroundColor: getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
+                  backgroundColor:
+                      getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
                 ),
                 child: Text('Listado de entradas'),
                 onPressed: () {
@@ -78,7 +83,8 @@ class _HomeClientPageState extends State<HomeClientPage> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   foregroundColor: getColor(Colors.white, Colors.yellow),
-                  backgroundColor: getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
+                  backgroundColor:
+                      getColor(Color.fromARGB(255, 136, 54, 244), Colors.black),
                 ),
                 child: Text(
                   'Ir a portada de noticias',
@@ -96,7 +102,6 @@ class _HomeClientPageState extends State<HomeClientPage> {
               text:
                   'Muestra la portada de noticias de la empresa donde encontrara futuros eventos e informacion de entradas.',
             ),
-            
             muestra(
               child: ElevatedButton(
                 style: ButtonStyle(
@@ -104,11 +109,12 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   backgroundColor: getColor(Colors.red, Colors.black),
                 ),
                 child: Text('Cerrar Sesion'),
-                
+
                 onPressed: () {
                   //logout(context);
+                  logout(context);
                 },
-                
+
                 //color: Colors.red,
                 //textColor: Colors.white,
               ),
@@ -121,14 +127,23 @@ class _HomeClientPageState extends State<HomeClientPage> {
   }
 
   MaterialStateProperty<Color> getColor(Color color, Color colorPressed) {
-    final getcolor = (Set<MaterialState> states){
-      if (states.contains(MaterialState.pressed)){
+    final getcolor = (Set<MaterialState> states) {
+      if (states.contains(MaterialState.pressed)) {
         return colorPressed;
-      }  else{
+      } else {
         return color;
       }
-
     };
     return MaterialStateProperty.resolveWith(getcolor);
+  }
+
+  void logout(BuildContext context) async {
+    //cerrar sesion en firebase
+    await FirebaseAuth.instance.signOut();
+    Authentificator().signOutGoogle();
+    //redirigir al login
+    MaterialPageRoute route =
+        MaterialPageRoute(builder: ((context) => LoginPage()));
+    Navigator.pushReplacement(context, route);
   }
 }
