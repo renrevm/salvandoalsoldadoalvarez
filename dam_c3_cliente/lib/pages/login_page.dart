@@ -53,150 +53,101 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Firebase.initializeApp();
     return Scaffold(
-      body: Container(
-        decoration: kContainerDegrade,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Inicio de sesión',
-                style: TextStyle(
-                    color: Color(kAccentColor1),
-                    fontSize: 40,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w900),
+      body: Column(
+        children: [
+          Container(
+            decoration: kContainerDegrade,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Divider(
+                    color: Colors.transparent,
+                    height: 100,
+                  ),
+
+                  Text(
+                    'APP DE EVENTOS',
+                    style: TextStyle(
+                        color: Color(kAccentColor1),
+                        fontSize: 40,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.w900),
+                  ),
+
+                  Divider(
+                    color: Colors.transparent,
+                    height: 70,
+                  ),
+
+                  //    primary: Color(kTerciaryColor),
+                ],
               ),
-              Divider(
-                color: Colors.transparent,
-              ),
-              Text(
-                '¡¡Bienvenido, seleccione una opción!!',
-                style: TextStyle(
-                    color: Color(kAccentColor1),
-                    fontSize: 22,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w500),
-              ),
-              Divider(
-                color: Colors.transparent,
-              ),
-              ToggleButton(),
-              Divider(
-                color: Colors.transparent,
-              ),
-              Container(
-                height: 250,
-                width: 350,
-                decoration: BoxDecoration(
-                  color: Color(kAccentColor1),
-                  borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          Divider(
+            color: Colors.transparent,
+            height: 0,
+          ),
+          Container(
+            child: Column(
+              children: [
+                Image(image: AssetImage('assets/Astronauta.png')),
+                Text(
+                  '──── Inicio de sesión ────',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 22,
+                      fontFamily: 'Raleway',
+                      fontWeight: FontWeight.w500),
                 ),
-                child: Form(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(6)),
-                            Expanded(
-                              child: TextFormField(
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 20),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    labelText: 'Correo'),
-                              ),
-                            ),
-                          ],
+                Divider(
+                  color: Colors.transparent,
+                  height: 10,
+                ),
+                Container(
+                  width: width,
+                  height: height,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(50.0))),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(kSecundaryColor),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0)))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(MdiIcons.google),
+                        Expanded(
+                          child: Text(
+                            'Google',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Padding(padding: EdgeInsets.all(6)),
-                            Expanded(
-                              child: TextFormField(
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 20),
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    labelText: 'Contraseña'),
-                                obscureText: ocultarPasswd,
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (!ocultarPasswd) {
-                                      ocultarPasswd = true;
-                                      eye = Icon(MdiIcons.eye);
-                                    } else {
-                                      ocultarPasswd = false;
-                                      eye = Icon(MdiIcons.eyeOff);
-                                    }
-                                  });
-                                },
-                                icon: eye)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        alignment: Alignment.center,
-                        width: double.infinity,
-                        child: Text(
-                          error,
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      ),
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                    ],
+                      ],
+                    ),
+                    onPressed: () async {
+                      User? user =
+                          await Authentificator.iniciarSesion(context: context);
+                      print(user?.displayName);
+                      print(user?.email);
+                      print(user?.photoURL);
+                      //String? nombre = user?.displayName;
+                      //Navegación
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeAdministradorPage()));
+                    },
                   ),
                 ),
-              ),
-              Divider(
-                color: Colors.transparent,
-              ),
-              Container(
-                width: width,
-                height: height,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(50.0))),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(kSecundaryColor),
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(50.0)))),
-                  child: Text('INICIAR SESIÓN'),
-                  onPressed: () async {
-                    User? user =
-                        await Authentificator.iniciarSesion(context: context);
-                    print(user?.displayName);
-                    print(user?.email);
-                    print(user?.photoURL);
-                    //String? nombre = user?.displayName;
-                    //Navegación
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomeAdministradorPage()));
-                  },
-                ),
-              ),
-              //    primary: Color(kTerciaryColor),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

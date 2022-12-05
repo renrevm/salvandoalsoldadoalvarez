@@ -22,10 +22,10 @@ const TextStyle kSubTituloAppbar = TextStyle(
   fontSize: 12,
 );
 const BoxDecoration kContainerDegrade = BoxDecoration(
-  //borderRadius: BorderRadius.only(
-  // bottomLeft: Radius.circular(35),
-  //  bottomRight: Radius.circular(35),
-  //),
+  borderRadius: BorderRadius.only(
+    bottomLeft: Radius.circular(80),
+    bottomRight: Radius.circular(80),
+  ),
   gradient: LinearGradient(
     colors: [
       Color(kPrimaryColor),
