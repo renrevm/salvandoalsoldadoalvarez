@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   Text(
                     'MASTER',
                     style: TextStyle(
-                        color: Color(kAccentColor1),
+                        color: Colors.yellow,
                         fontSize: 20,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w900),

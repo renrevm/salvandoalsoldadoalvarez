@@ -8,6 +8,7 @@ import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../adminpages/portada_noticias_page.dart';
 import '../services/authentificator.dart';
 import '../widgets/muestra.dart';
 import 'login_page.dart';
@@ -96,12 +97,12 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
             ),
             muestra(
               child: ElevatedButton(
-                child: Text('Publicar Noticias'),
+                child: Text('Noticias'),
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PublicarNoticiasPage(
+                          builder: (context) => PortadaNoticiasPage(
                               widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.purpleAccent,
