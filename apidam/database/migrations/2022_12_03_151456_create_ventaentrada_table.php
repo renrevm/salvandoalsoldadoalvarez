@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ventaentrada', function (Blueprint $table) {
-            $table->string('cod_venta')->primary();
-            $table->string('cod_evento');
+        Schema::create('ventaentradas', function (Blueprint $table) {
+            $table->unsignedInteger('id_venta')->autoIncrement();
+            $table->string('codevento');
             $table->string('cod_cliente');
             $table->integer('total');
 	        $table->softDeletes();
+            
+            $table->foreign('codevento')->references('cod_evento')->on('eventos');
+
         });
     }
 

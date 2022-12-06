@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evento', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->string('cod_evento')->primary();
             $table->string('nom_evento',50);
             $table->integer('precio_entrada');
