@@ -37,3 +37,15 @@ const BoxDecoration kContainerDegrade = BoxDecoration(
     end: FractionalOffset.bottomRight,
   ),
 );
+const BoxDecoration kContainerDegradeMenu = BoxDecoration(
+  gradient: LinearGradient(
+    colors: [
+      Color(kPrimaryColor),
+      Color(kSecundaryColor),
+      Color(kTerciaryColor),
+    ],
+    stops: [0.3, 0.4, 0.9],
+    begin: FractionalOffset.topLeft,
+    end: FractionalOffset.bottomRight,
+  ),
+);
