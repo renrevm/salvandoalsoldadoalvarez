@@ -70,10 +70,18 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   Text(
-                    'APP DE EVENTOS',
+                    'PUNTOTICKETEK',
                     style: TextStyle(
                         color: Color(kAccentColor1),
                         fontSize: 25,
+                        fontFamily: 'Raleway',
+                        fontWeight: FontWeight.w900),
+                  ),
+                  Text(
+                    'MASTER',
+                    style: TextStyle(
+                        color: Color(kAccentColor1),
+                        fontSize: 20,
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.w900),
                   ),
@@ -138,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                       print(user?.displayName);
                       print(user?.email);
                       print(user?.photoURL);
-                      if (user?.displayName == 'vicente paez') {
+                      if (user?.email == 'vixopaez2502@gmail.com') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
