@@ -148,7 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                       print(user?.photoURL);
                       String nombre = user?.displayName ?? '';
                       String correo = user?.email ?? '';
-                      String url = user?.photoURL ?? '';
+                      String url = user?.photoURL ??
+                          'https://i.pinimg.com/originals/3e/44/2e/3e442e5eb7f03dbd40a71b70531f4230.jpg';
                       if (user?.email == 'vixopaez2502@gmail.com') {
                         Navigator.push(
                             context,

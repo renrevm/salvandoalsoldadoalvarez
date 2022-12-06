@@ -17,7 +17,7 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
       appBar: AppBar(
         title: Text('Editar Eventos'),
       ),
-      drawer: MenuPage('', '', ''),
+      //drawer: MenuPage('', '', ''),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

@@ -17,7 +17,7 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
       appBar: AppBar(
         title: Text('Borrar Evento'),
       ),
-      drawer: MenuPage('', '', ''),
+      //drawer: MenuPage('', '', ''),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

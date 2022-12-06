@@ -17,7 +17,8 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
       appBar: AppBar(
         title: Text('Agregar Eventos'),
       ),
-      drawer: MenuPage('', '', ''),
+      //drawer: MenuPage('', '', ''),
+
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
