@@ -1,8 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../pages/menu_page.dart';
+import '../services/firestore_service.dart';
 
 // ignore: must_be_immutable
 class PortadaNoticiasPage extends StatefulWidget {
@@ -18,34 +22,67 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Portada de interes'),
+        backgroundColor: Color(kPrimaryColor),
+        title: Text(
+          'Noticias',
+        ),
       ),
       drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text(
-              'Noticias de la empresa: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
-              child: Row(
-                children: [
-                  Text('Aceptar'),
-                  Icon(Icons.arrow_forward_ios),
-                ],
-              ),
-              onPressed: () => {},
-            ),
-            ElevatedButton(
-              child: Text('Volver al menu anterior'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+      backgroundColor: Color(kPrimaryColor),
+      body: StreamBuilder(
+        stream: FirestoreService.noticias(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData ||
+              snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return ListView.separated(
+            separatorBuilder: (context, index) => Divider(),
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              var noticias = snapshot.data!.docs[index];
+              //print('Producto: '+producto.data().toString());
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 120,
+                  width: 80,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      noticias['titulo'],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Times New Roman'),
+                    ),
+                    subtitle: Text(
+                      noticias['descripcion'],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13, fontFamily: 'system-ui'),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          MdiIcons.arrowLeft,
+          color: Color(kPrimaryColor),
         ),
+        backgroundColor: Color(kAccentColor1),
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
