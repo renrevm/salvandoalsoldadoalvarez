@@ -4,8 +4,9 @@ import 'package:dam_c3_cliente/pages/menu_perfil_page.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatefulWidget {
-  const MenuPage({key});
-
+  //const MenuPage({key});
+  String nombre, correo, url;
+  MenuPage(this.nombre, this.correo, this.url);
   @override
   State<MenuPage> createState() => _MenuPageState();
 }
@@ -19,9 +20,11 @@ class _MenuPageState extends State<MenuPage> {
         children: [
           UserAccountsDrawerHeader(
             decoration: kContainerDegradeMenu,
-            accountName: Text('Gonzalo Alvarez'),
-            accountEmail: Text('Gonzalo.alvarezv@usm.cl'),
-            currentAccountPicture: Image.asset('assets/gonza.jpg'),
+            accountName: Text(widget.nombre),
+            accountEmail: Text(widget.correo),
+            currentAccountPicture: Image(
+              image: NetworkImage(widget.url),
+            ),
           ),
           ListTile(
             title: Text('Perfil'),

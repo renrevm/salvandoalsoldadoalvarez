@@ -146,16 +146,21 @@ class _LoginPageState extends State<LoginPage> {
                       print(user?.displayName);
                       print(user?.email);
                       print(user?.photoURL);
+                      String nombre = user?.displayName ?? '';
+                      String correo = user?.email ?? '';
+                      String url = user?.photoURL ?? '';
                       if (user?.email == 'vixopaez2502@gmail.com') {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeAdministradorPage()));
+                                builder: (context) => HomeAdministradorPage(
+                                    nombre, correo, url)));
                       } else {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeClientPage()));
+                                builder: (context) =>
+                                    HomeClientPage(nombre, correo, url)));
                       }
                     },
                   ),

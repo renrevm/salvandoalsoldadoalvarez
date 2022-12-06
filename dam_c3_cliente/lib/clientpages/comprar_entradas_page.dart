@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 import '../pages/menu_page.dart';
 
+// ignore: must_be_immutable
 class ComprarEntradasPage extends StatefulWidget {
-  const ComprarEntradasPage({key});
-
+  //const ComprarEntradasPage({key});
+  String nombre, correo, url;
+  ComprarEntradasPage(this.nombre, this.correo, this.url);
   @override
   State<ComprarEntradasPage> createState() => _ComprarEntradasPageState();
 }
@@ -18,7 +20,7 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
       appBar: AppBar(
         title: Text('Comprar entradas'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

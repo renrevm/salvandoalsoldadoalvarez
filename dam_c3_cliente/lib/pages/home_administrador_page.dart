@@ -12,9 +12,11 @@ import '../services/authentificator.dart';
 import '../widgets/muestra.dart';
 import 'login_page.dart';
 
+// ignore: must_be_immutable
 class HomeAdministradorPage extends StatefulWidget {
-  const HomeAdministradorPage({key});
-
+  //const HomeAdministradorPage({key});
+  String nombre, correo, url;
+  HomeAdministradorPage(this.nombre, this.correo, this.url);
   @override
   State<HomeAdministradorPage> createState() => _HomeAdministradorPageState();
 }
@@ -27,7 +29,7 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
         title: Text('Administrador'),
         backgroundColor: Colors.purple,
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -47,7 +49,8 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ListarEventosTryPage()));
+                          builder: (context) => ListarEventosTryPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
 
                 //color: Colors.purpleAccent,
@@ -63,7 +66,8 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CambiarEstadoEventosPage()));
+                          builder: (context) => CambiarEstadoEventosPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,
@@ -81,7 +85,8 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => InformacionEventosPage()));
+                          builder: (context) => InformacionEventosPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,
@@ -96,7 +101,8 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PublicarNoticiasPage()));
+                          builder: (context) => PublicarNoticiasPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,

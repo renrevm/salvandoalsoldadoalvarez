@@ -3,9 +3,11 @@
 import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class InformacionEventosPage extends StatefulWidget {
-  const InformacionEventosPage({key});
-
+  //const InformacionEventosPage({key});
+  String nombre, correo, url;
+  InformacionEventosPage(this.nombre, this.correo, this.url);
   @override
   State<InformacionEventosPage> createState() => _InformacionEventosPageState();
 }
@@ -17,7 +19,7 @@ class _InformacionEventosPageState extends State<InformacionEventosPage> {
       appBar: AppBar(
         title: Text('Informacion de eventos'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

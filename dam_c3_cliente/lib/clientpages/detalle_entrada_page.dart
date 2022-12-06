@@ -18,7 +18,7 @@ class _DetalleEntradaPageState extends State<DetalleEntradaPage> {
       appBar: AppBar(
         title: Text('Detalle de Entrada'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage('', '', ''),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

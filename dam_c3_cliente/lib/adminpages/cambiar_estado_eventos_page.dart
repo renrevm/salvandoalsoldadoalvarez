@@ -3,9 +3,11 @@
 import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CambiarEstadoEventosPage extends StatefulWidget {
-  const CambiarEstadoEventosPage({key});
-
+  //const CambiarEstadoEventosPage({key});
+  String nombre, correo, url;
+  CambiarEstadoEventosPage(this.nombre, this.correo, this.url);
   @override
   State<CambiarEstadoEventosPage> createState() =>
       _CambiarEstadoEventosPageState();
@@ -18,7 +20,7 @@ class _CambiarEstadoEventosPageState extends State<CambiarEstadoEventosPage> {
       appBar: AppBar(
         title: Text('Cambiar el estado de un Evento'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

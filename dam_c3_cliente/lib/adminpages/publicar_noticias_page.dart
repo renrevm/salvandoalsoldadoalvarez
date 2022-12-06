@@ -3,9 +3,11 @@
 import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class PublicarNoticiasPage extends StatefulWidget {
-  const PublicarNoticiasPage({key});
-
+  //const PublicarNoticiasPage({key});
+  String nombre, correo, url;
+  PublicarNoticiasPage(this.nombre, this.correo, this.url);
   @override
   State<PublicarNoticiasPage> createState() => _PublicarNoticiasPageState();
 }
@@ -17,7 +19,7 @@ class _PublicarNoticiasPageState extends State<PublicarNoticiasPage> {
       appBar: AppBar(
         title: Text('Noticias para la portada'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 
 import '../pages/menu_page.dart';
 
+// ignore: must_be_immutable
 class ListarEntradasCompPage extends StatefulWidget {
-  const ListarEntradasCompPage({key});
-
+  //const ListarEntradasCompPage({key});
+  String nombre, correo, url;
+  ListarEntradasCompPage(this.nombre, this.correo, this.url);
   @override
   State<ListarEntradasCompPage> createState() => _ListarEntradasCompPageState();
 }
@@ -19,7 +21,7 @@ class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
       appBar: AppBar(
         title: Text('Listado de Compra de entradas'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

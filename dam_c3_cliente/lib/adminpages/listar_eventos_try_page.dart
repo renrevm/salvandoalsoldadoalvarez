@@ -10,9 +10,11 @@ import '../pages/home_administrador_page.dart';
 
 import '../widgets/muestra.dart';
 
+// ignore: must_be_immutable
 class ListarEventosTryPage extends StatefulWidget {
-  const ListarEventosTryPage({key});
-
+  //const ListarEventosTryPage({key});
+  String nombre, correo, url;
+  ListarEventosTryPage(this.nombre, this.correo, this.url);
   @override
   State<ListarEventosTryPage> createState() => _ListarEventosTryPageState();
 }
@@ -24,7 +26,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
       appBar: AppBar(
         title: Text('Listado de Eventos'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

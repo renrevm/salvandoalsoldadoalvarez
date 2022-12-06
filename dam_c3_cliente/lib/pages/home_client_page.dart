@@ -10,9 +10,11 @@ import '../widgets/muestra.dart';
 import 'login_page.dart';
 import 'menu_page.dart';
 
+// ignore: must_be_immutable
 class HomeClientPage extends StatefulWidget {
-  const HomeClientPage({key});
-
+  //const HomeClientPage({key});
+  String nombre, correo, url;
+  HomeClientPage(this.nombre, this.correo, this.url);
   @override
   State<HomeClientPage> createState() => _HomeClientPageState();
 }
@@ -25,7 +27,7 @@ class _HomeClientPageState extends State<HomeClientPage> {
         title: Text('Cliente'),
         backgroundColor: Color.fromARGB(255, 89, 66, 221),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -50,7 +52,8 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ComprarEntradasPage()));
+                          builder: (context) => ComprarEntradasPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
 
                 //color: Colors.purpleAccent,
@@ -71,7 +74,8 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ListarEntradasCompPage()));
+                          builder: (context) => ListarEntradasCompPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,
@@ -94,7 +98,8 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PortadaNoticiasPage()));
+                          builder: (context) => PortadaNoticiasPage(
+                              widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,

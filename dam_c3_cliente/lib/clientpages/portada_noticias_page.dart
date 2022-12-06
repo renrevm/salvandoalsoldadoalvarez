@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 import '../pages/menu_page.dart';
 
+// ignore: must_be_immutable
 class PortadaNoticiasPage extends StatefulWidget {
-  const PortadaNoticiasPage({key});
-
+  //const PortadaNoticiasPage({key});
+  String nombre, correo, url;
+  PortadaNoticiasPage(this.nombre, this.correo, this.url);
   @override
   State<PortadaNoticiasPage> createState() => _PortadaNoticiasPageState();
 }
@@ -18,7 +20,7 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
       appBar: AppBar(
         title: Text('Portada de interes'),
       ),
-      drawer: MenuPage(),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
