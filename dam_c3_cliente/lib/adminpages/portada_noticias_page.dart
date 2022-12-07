@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dam_c3_cliente/adminpages/publicar_noticias_page.dart';
 import 'package:dam_c3_cliente/constant.dart';
+import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../services/firestore_service.dart';
@@ -19,7 +20,7 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: kContainerDegradeMenu,
+      decoration: boxDegrade,
       child: Column(
         children: [
           Divider(

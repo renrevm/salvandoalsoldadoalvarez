@@ -3,6 +3,9 @@
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/services/firestore_service.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../widgets/box_degrade.dart';
 
 // ignore: must_be_immutable
 class PublicarNoticiasPage extends StatefulWidget {
@@ -30,111 +33,135 @@ class _PublicarNoticiasPageState extends State<PublicarNoticiasPage> {
         shadowColor: Color(kPrimaryColor),
       ),
       body: Container(
-        decoration: kContainerDegradeMenu,
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 150, left: 20, right: 20, bottom: 10),
-          child: Container(
-            decoration: BoxDecoration(
+        decoration: boxDegrade,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Divider(
+              height: 30,
+              thickness: 0,
+            ),
+            Text(
+              'Nueva Noticia',
+              style: TextStyle(
                 color: Color(kAccentColor1),
-                borderRadius: BorderRadius.circular(20)),
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Divider(
-                      height: 50,
-                      thickness: 0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(fontSize: 20),
-                      cursorWidth: 0.5,
-                      controller: tituloController,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          fillColor: Colors.grey,
-                          focusColor: Colors.grey,
-                          hintText: 'Titulo'),
-                    ),
-                    Text(errortitulo),
-                    Divider(
-                      height: 80,
-                      thickness: 0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(fontSize: 20),
-                      controller: cuerpoController,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          fillColor: Colors.grey,
-                          focusColor: Colors.grey,
-                          hintText: 'Cuerpo'),
-                    ),
-                    Text(errorCuerpo),
-                    Divider(),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    top: 50, left: 20, right: 20, bottom: 9),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Color(kAccentColor1),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
                         children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(50.0)))),
-                            child: Row(
-                              children: [
-                                Text('Aceptar'),
-                                Icon(Icons.check),
-                              ],
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                if (tituloController.text == '') {
-                                  errortitulo = 'Escriba un título';
-                                } else {
-                                  errortitulo = '';
-                                }
-                                if (cuerpoController.text == '') {
-                                  errorCuerpo = 'Escriba el cuerpo';
-                                } else {
-                                  errorCuerpo = '';
-                                }
-                                if (tituloController.text != '' &&
-                                    cuerpoController.text != '') {
-                                  String titulo = tituloController.text;
-                                  String descripcion = cuerpoController.text;
-                                  FirestoreService()
-                                      .agregar(titulo, descripcion);
-                                  Navigator.pop(context);
-                                }
-                              });
-                            },
+                          Divider(
+                            height: 50,
+                            thickness: 0,
                           ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(50.0)))),
+                          TextFormField(
+                            style: TextStyle(fontSize: 20),
+                            cursorWidth: 0.5,
+                            controller: tituloController,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                fillColor: Colors.grey,
+                                focusColor: Colors.grey,
+                                hintText: 'Titulo'),
+                          ),
+                          Text(
+                            errortitulo,
+                            style: kTextError,
+                          ),
+                          Divider(
+                            height: 80,
+                            thickness: 0,
+                          ),
+                          TextFormField(
+                            style: TextStyle(fontSize: 20),
+                            controller: cuerpoController,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                fillColor: Colors.grey,
+                                focusColor: Colors.grey,
+                                hintText: 'Cuerpo'),
+                          ),
+                          Text(errorCuerpo, style: kTextError),
+                          Divider(),
+                          Expanded(
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text('Cancelar'),
-                                Icon(Icons.cancel),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(50.0)))),
+                                  child: Row(
+                                    children: [
+                                      Text('Aceptar'),
+                                      Icon(Icons.check),
+                                    ],
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      if (tituloController.text == '') {
+                                        errortitulo = 'Escriba un título';
+                                      } else {
+                                        errortitulo = '';
+                                      }
+                                      if (cuerpoController.text == '') {
+                                        errorCuerpo = 'Escriba el cuerpo';
+                                      } else {
+                                        errorCuerpo = '';
+                                      }
+                                      if (tituloController.text != '' &&
+                                          cuerpoController.text != '') {
+                                        String titulo = tituloController.text;
+                                        String descripcion =
+                                            cuerpoController.text;
+                                        FirestoreService()
+                                            .agregar(titulo, descripcion);
+                                        Navigator.pop(context);
+                                      }
+                                    });
+                                  },
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(50.0)))),
+                                  child: Row(
+                                    children: [
+                                      Text('Cancelar'),
+                                      Icon(Icons.cancel),
+                                    ],
+                                  ),
+                                  onPressed: () => {Navigator.pop(context)},
+                                ),
                               ],
                             ),
-                            onPressed: () => {Navigator.pop(context)},
                           ),
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

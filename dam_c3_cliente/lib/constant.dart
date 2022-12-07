@@ -10,9 +10,10 @@ const kTerciaryColor = 0xFFAE6EFD;
 const kGreyPrimaryColor = 0xFF593E7A;
 
 const kAccentColor1 = 0xFFF1F0F3;
+const kErrorColor = 0xFFEC0808;
 
 const TextStyle kTituloAppbar = TextStyle(
-  color: Colors.white,
+  color: Color(kAccentColor1),
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );
@@ -21,31 +22,9 @@ const TextStyle kSubTituloAppbar = TextStyle(
   color: Colors.grey,
   fontSize: 12,
 );
-const BoxDecoration kContainerDegrade = BoxDecoration(
-  borderRadius: BorderRadius.only(
-    bottomLeft: Radius.circular(80),
-    bottomRight: Radius.circular(80),
-  ),
-  gradient: LinearGradient(
-    colors: [
-      Color(kPrimaryColor),
-      Color(kSecundaryColor),
-      Color(kTerciaryColor),
-    ],
-    stops: [0.3, 0.4, 0.9],
-    begin: FractionalOffset.topLeft,
-    end: FractionalOffset.bottomRight,
-  ),
-);
-const BoxDecoration kContainerDegradeMenu = BoxDecoration(
-  gradient: LinearGradient(
-    colors: [
-      Color(kPrimaryColor),
-      Color(kSecundaryColor),
-      Color(kTerciaryColor),
-    ],
-    stops: [0.3, 0.4, 0.9],
-    begin: FractionalOffset.topLeft,
-    end: FractionalOffset.bottomRight,
-  ),
+
+const TextStyle kTextError = TextStyle(
+  color: Color(kErrorColor),
+  fontWeight: FontWeight.normal,
+  fontSize: 20,
 );

@@ -1,6 +1,6 @@
 import 'package:dam_c3_cliente/constant.dart';
-
 import 'package:dam_c3_cliente/pages/menu_perfil_page.dart';
+import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class _MenuPageState extends State<MenuPage> {
         padding: EdgeInsets.all(0),
         children: [
           UserAccountsDrawerHeader(
-            decoration: kContainerDegradeMenu,
+            decoration: boxDegrade,
             accountName: Text(widget.nombre),
             accountEmail: Text(widget.correo),
             currentAccountPicture: Image(
@@ -40,17 +40,18 @@ class _MenuPageState extends State<MenuPage> {
             },
           ),
           ListTile(
-              title: Text('Cerrar Sesion'),
-              leading: Icon(Icons.exit_to_app),
-              onTap: (){
-                logout(context);
-                //logout(context);
-                },    
-            ),
+            title: Text('Cerrar Sesion'),
+            leading: Icon(Icons.exit_to_app),
+            onTap: () {
+              logout(context);
+              //logout(context);
+            },
+          ),
         ],
       ),
     );
   }
+
   void logout(BuildContext context) async {
     //cerrar sesion en firebase
     await FirebaseAuth.instance.signOut();
