@@ -1,14 +1,13 @@
 import 'package:dam_c3_cliente/adminpages/portada_noticias_page.dart';
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
-
-import '../adminpages/cambiar_estado_eventos_page.dart';
 import '../adminpages/informacion_eventos_page.dart';
 import '../adminpages/listar_eventos_try_page.dart';
 import 'menu_page.dart';
 
 // ignore: must_be_immutable
 class HomeAdministradorPage2 extends StatefulWidget {
+  //const ListarEventosTryPage({key});
   String nombre, correo, url;
   HomeAdministradorPage2(this.nombre, this.correo, this.url);
 
@@ -21,7 +20,7 @@ class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
   final paginas = [
     PortadaNoticiasPage(),
     ListarEventosTryPage(),
-    CambiarEstadoEventosPage(),
+    //CambiarEstadoEventosPage(),
     InformacionEventosPage()
   ];
 
@@ -51,10 +50,8 @@ class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.newspaper), label: 'Noticias'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shop), label: 'Listar Eventos'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.list), label: 'Cambiar Estado'),
+          BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Eventos'),
+          //BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Cambiar Estado'),
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Informacion'),
         ],
       ),

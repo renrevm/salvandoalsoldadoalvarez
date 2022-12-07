@@ -23,6 +23,7 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
       child: Column(
         children: [
           ElevatedButton(
+            //style: ,
             child: Icon(
               MdiIcons.newspaper,
               color: Color(kPrimaryColor),

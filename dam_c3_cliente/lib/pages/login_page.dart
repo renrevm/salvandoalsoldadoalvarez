@@ -1,16 +1,12 @@
 import 'package:dam_c3_cliente/constant.dart';
-import 'package:dam_c3_cliente/pages/home_administrador_page.dart';
 import 'package:dam_c3_cliente/services/authentificator.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'home_administrador_page2.dart';
-import 'home_client_page.dart';
 import 'home_client_page2.dart';
 // cd a android y .\gradlew signingReport para encontrar huella digital sh1
 

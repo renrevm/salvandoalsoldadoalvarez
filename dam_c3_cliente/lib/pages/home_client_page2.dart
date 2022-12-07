@@ -48,18 +48,18 @@ class _HomeClientPage2State extends State<HomeClientPage2> {
         unselectedFontSize: 12.0,
         items: [
           BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shop,
+                color: Color(kAccentColor1),
+              ),
+              label: 'Eventos'),
+          BottomNavigationBarItem(
             icon: Icon(
               Icons.newspaper,
               color: Color(kAccentColor1),
             ),
             label: 'Noticias',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.shop,
-                color: Color(kAccentColor1),
-              ),
-              label: 'Eventos'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.list,
