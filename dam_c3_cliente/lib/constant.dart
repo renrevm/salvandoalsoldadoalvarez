@@ -12,7 +12,7 @@ const kGreyPrimaryColor = 0xFF593E7A;
 const kAccentColor1 = 0xFFF1F0F3;
 
 const TextStyle kTituloAppbar = TextStyle(
-  color: Colors.black,
+  color: Colors.white,
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );

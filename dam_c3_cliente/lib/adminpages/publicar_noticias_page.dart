@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
@@ -19,102 +20,121 @@ class _PublicarNoticiasPageState extends State<PublicarNoticiasPage> {
   String errortitulo = '';
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            Text(
-              'Escriba los datos de la noticia',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Divider(
-              height: 60,
-              thickness: 0,
-            ),
-            TextFormField(
-              style: TextStyle(fontSize: 20),
-              cursorWidth: 0.5,
-              controller: tituloController,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.grey,
-                  focusColor: Colors.grey,
-                  hintText: 'Titulo'),
-            ),
-            Text(errortitulo),
-            Divider(
-              height: 60,
-              thickness: 0,
-            ),
-            TextFormField(
-              style: TextStyle(fontSize: 20),
-              controller: cuerpoController,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.grey,
-                  focusColor: Colors.grey,
-                  hintText: 'Cuerpo'),
-            ),
-            Text(errorCuerpo),
-            Divider(),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)))),
-                    child: Row(
-                      children: [
-                        Text('Aceptar'),
-                        Icon(Icons.check),
-                      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Agregar Noticia',
+          style: kTituloAppbar,
+        ),
+        backgroundColor: Color(kPrimaryColor),
+        shadowColor: Color(kPrimaryColor),
+      ),
+      body: Container(
+        decoration: kContainerDegradeMenu,
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 150, left: 20, right: 20, bottom: 10),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Color(kAccentColor1),
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Divider(
+                      height: 50,
+                      thickness: 0,
                     ),
-                    onPressed: () {
-                      setState(() {
-                        if (tituloController.text == '') {
-                          errortitulo = 'Escriba un título';
-                        } else {
-                          errortitulo = '';
-                        }
-                        if (cuerpoController.text == '') {
-                          errorCuerpo = 'Escriba el cuerpo';
-                        } else {
-                          errorCuerpo = '';
-                        }
-                        if (tituloController.text != '' &&
-                            cuerpoController.text != '') {
-                          String titulo = tituloController.text;
-                          String descripcion = cuerpoController.text;
-                          FirestoreService().agregar(titulo, descripcion);
-                          Navigator.pop(context);
-                        }
-                      });
-                    },
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)))),
-                    child: Row(
-                      children: [
-                        Text('Cancelar'),
-                        Icon(Icons.cancel),
-                      ],
+                    TextFormField(
+                      style: TextStyle(fontSize: 20),
+                      cursorWidth: 0.5,
+                      controller: tituloController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.grey,
+                          focusColor: Colors.grey,
+                          hintText: 'Titulo'),
                     ),
-                    onPressed: () => {Navigator.pop(context)},
-                  ),
-                ],
+                    Text(errortitulo),
+                    Divider(
+                      height: 80,
+                      thickness: 0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(fontSize: 20),
+                      controller: cuerpoController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.grey,
+                          focusColor: Colors.grey,
+                          hintText: 'Cuerpo'),
+                    ),
+                    Text(errorCuerpo),
+                    Divider(),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(50.0)))),
+                            child: Row(
+                              children: [
+                                Text('Aceptar'),
+                                Icon(Icons.check),
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                if (tituloController.text == '') {
+                                  errortitulo = 'Escriba un título';
+                                } else {
+                                  errortitulo = '';
+                                }
+                                if (cuerpoController.text == '') {
+                                  errorCuerpo = 'Escriba el cuerpo';
+                                } else {
+                                  errorCuerpo = '';
+                                }
+                                if (tituloController.text != '' &&
+                                    cuerpoController.text != '') {
+                                  String titulo = tituloController.text;
+                                  String descripcion = cuerpoController.text;
+                                  FirestoreService()
+                                      .agregar(titulo, descripcion);
+                                  Navigator.pop(context);
+                                }
+                              });
+                            },
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(50.0)))),
+                            child: Row(
+                              children: [
+                                Text('Cancelar'),
+                                Icon(Icons.cancel),
+                              ],
+                            ),
+                            onPressed: () => {Navigator.pop(context)},
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
