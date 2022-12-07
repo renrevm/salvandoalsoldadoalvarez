@@ -11,8 +11,8 @@ class Venta extends Model
 {
     use HasFactory, softDeletes;
     
-    protected $table = 'ventaentrada';
-    protected $primaryKey = 'cod_venta';
-    protected $keyType = 'string';
+    protected $table = 'ventaentradas';
+    protected $primaryKey = 'id_venta';
+    protected $keyType = 'unsignedInteger';
 	public $timestamps = false;
 }
