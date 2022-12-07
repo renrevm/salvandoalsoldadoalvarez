@@ -1,3 +1,4 @@
+import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
 
 import '../clientpages/portada_noticias_page.dart';
@@ -14,10 +15,10 @@ class HomeClientPage2 extends StatefulWidget {
 }
 
 class _HomeClientPage2State extends State<HomeClientPage2> {
-  int paginaSel = 0;
+  int paginaSel = 1;
   final paginas = [
-    PortadaNoticiasPage(),
     ComprarEntradasPage(),
+    PortadaNoticiasPage(),
     ListarEntradasCompPage()
   ];
 
@@ -26,12 +27,13 @@ class _HomeClientPage2State extends State<HomeClientPage2> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cliente'),
-        backgroundColor: Color.fromARGB(255, 170, 17, 201),
+        backgroundColor: Color(kPrimaryColor),
       ),
       drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: paginas[paginaSel],
       bottomNavigationBar: BottomNavigationBar(
         //type: BottomNavigationBarType.fixed,
+        backgroundColor: Color(kTerciaryColor),
         type: BottomNavigationBarType.fixed,
         currentIndex: paginaSel,
         onTap: (index) {
@@ -40,16 +42,30 @@ class _HomeClientPage2State extends State<HomeClientPage2> {
             paginaSel = index;
           });
         },
-        selectedItemColor: Color.fromARGB(255, 170, 17, 201),
+        selectedItemColor: Color(kAccentColor1),
         iconSize: 25.0,
         selectedFontSize: 14.0,
         unselectedFontSize: 12.0,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper), label: 'Noticias'),
-          BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Eventos'),
+            icon: Icon(
+              Icons.newspaper,
+              color: Color(kAccentColor1),
+            ),
+            label: 'Noticias',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), label: 'Listado Entradas'),
+              icon: Icon(
+                Icons.shop,
+                color: Color(kAccentColor1),
+              ),
+              label: 'Eventos'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list,
+                color: Color(kAccentColor1),
+              ),
+              label: 'Listado Entradas'),
         ],
       ),
     );
