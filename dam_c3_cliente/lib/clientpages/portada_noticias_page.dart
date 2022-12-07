@@ -7,6 +7,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../pages/menu_page.dart';
 import '../services/firestore_service.dart';
+import 'comprar_entradas_page.dart';
+import 'listar_entradas_comp_page.dart';
 
 // ignore: must_be_immutable
 class PortadaNoticiasPage extends StatefulWidget {
@@ -72,18 +74,8 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
             },
           );
         },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          MdiIcons.arrowLeft,
-          color: Color(kPrimaryColor),
-        ),
-        backgroundColor: Color(kAccentColor1),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
+      ), 
     );
   }
+
 }

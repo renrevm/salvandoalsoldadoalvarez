@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 
 import '../pages/menu_page.dart';
 
-// ignore: must_be_immutable
 class ComprarEntradasPage extends StatefulWidget {
-  //const ComprarEntradasPage({key});
   String nombre, correo, url;
-  ComprarEntradasPage(this.nombre, this.correo, this.url);
+  ComprarEntradasPage(this.nombre,this.correo,this.url);
+
   @override
   State<ComprarEntradasPage> createState() => _ComprarEntradasPageState();
 }
@@ -17,36 +16,16 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Comprar entradas'),
-      ),
       drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text(
-              'entradas para eventos: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
-              child: Row(
-                children: [
-                  Text('Aceptar'),
-                  Icon(Icons.arrow_forward_ios),
-                ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                "https://i.pinimg.com/originals/e7/f7/ce/e7f7ce43165a5fdcbf25739702a15bd3.jpg",
               ),
-              onPressed: () => {},
-            ),
-            ElevatedButton(
-              child: Text('Volver al menu anterior'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              fit: BoxFit.cover),
         ),
-      ),
-    );
+          ),
+        ); 
   }
 }

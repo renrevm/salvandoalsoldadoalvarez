@@ -4,7 +4,9 @@ import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
 class BorrarEventosPage extends StatefulWidget {
-  const BorrarEventosPage({key});
+
+  String nombre, correo, url;
+  BorrarEventosPage(this.nombre, this.correo, this.url);
 
   @override
   State<BorrarEventosPage> createState() => _BorrarEventosPageState();
@@ -17,7 +19,7 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
       appBar: AppBar(
         title: Text('Borrar Evento'),
       ),
-      //drawer: MenuPage('', '', ''),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

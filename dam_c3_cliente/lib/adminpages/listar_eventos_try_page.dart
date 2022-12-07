@@ -22,12 +22,8 @@ class ListarEventosTryPage extends StatefulWidget {
 class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Listado de Eventos'),
-      ),
-      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Container(
+    return Container(
+      child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(
@@ -46,7 +42,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AgregarEventosPage()));
+                          builder: (context) => AgregarEventosPage(widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.blueAccent.shade200,
                 //textColor: Colors.white,
@@ -61,7 +57,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => EditarEventosPage()));
+                          builder: (context) => EditarEventosPage(widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.blueAccent.shade200,
                 //textColor: Colors.white,
@@ -78,7 +74,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => BorrarEventosPage()));
+                          builder: (context) => BorrarEventosPage(widget.nombre, widget.correo, widget.url)));
                 },
                 //color: Colors.blueAccent.shade200,
                 //textColor: Colors.white,

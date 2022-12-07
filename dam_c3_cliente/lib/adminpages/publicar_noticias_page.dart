@@ -3,6 +3,8 @@
 import 'package:dam_c3_cliente/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/menu_page.dart';
+
 // ignore: must_be_immutable
 class PublicarNoticiasPage extends StatefulWidget {
   //const PublicarNoticiasPage({key});
@@ -22,9 +24,9 @@ class _PublicarNoticiasPageState extends State<PublicarNoticiasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nueva noticia'),
+        title: Text('Administrador  Publicar Noticia '),
       ),
-      //drawer: MenuPage(widget.nombre, widget.correo, widget.url),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Form(

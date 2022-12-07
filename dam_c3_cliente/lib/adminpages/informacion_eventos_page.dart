@@ -15,12 +15,9 @@ class InformacionEventosPage extends StatefulWidget {
 class _InformacionEventosPageState extends State<InformacionEventosPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Informacion de eventos'),
-      ),
-      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Padding(
+    return Container(
+  
+      child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [

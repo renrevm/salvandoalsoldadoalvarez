@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import '../pages/menu_page.dart';
 
 class DetalleEntradaPage extends StatefulWidget {
-  const DetalleEntradaPage({key});
+  String nombre, correo, url;
+  DetalleEntradaPage(this.nombre,this.correo,this.url);
 
   @override
   State<DetalleEntradaPage> createState() => _DetalleEntradaPageState();
@@ -14,28 +15,46 @@ class DetalleEntradaPage extends StatefulWidget {
 class _DetalleEntradaPageState extends State<DetalleEntradaPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Detalle de Entrada'),
-      ),
-      //drawer: MenuPage('', '', ''),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text(
-              'Entrada: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Container(
+      child:Container(
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYvXQsPqpLBOcwiuUshopdMydJOwRL-sgeJro5RzyNlqJu9076TgHf46Yiw1VBS_MWz70HNoZgUB1fJcUa3cdncghm3QGQsmtXzUschJnghlyRAEgJQhI2VryH76B1Q_q332MulbpaA7M4YeIcx7cx9lqbb5HZvze4jC-qBNLrVD_L6bOsbEOWmA__iQ/w296-h640/cute-astronaut.png",
+                  ),
+                  fit: BoxFit.cover),
             ),
-            ElevatedButton(
-              child: Text('Volver al menu anterior'),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ButtonStyle(
+                  foregroundColor: getColor(Colors.white, Colors.yellow),
+                  backgroundColor: getColor(Color.fromARGB(255, 206, 30, 30), Colors.black),
+                ),
+                  child: Text('Volver al menu anterior'),
               onPressed: () {
-                Navigator.pop(context);
-              },
+                  Navigator.pop(context);
+                },
+              
             ),
-          ],
-        ),
+              ],
+            ),
+          ),
       ),
+      
     );
   }
+  MaterialStateProperty<Color> getColor(Color color, Color colorPressed) {
+    final getcolor = (Set<MaterialState> states) {
+      if (states.contains(MaterialState.pressed)) {
+        return colorPressed;
+      } else {
+        return color;
+      }
+    };
+    return MaterialStateProperty.resolveWith(getcolor);
+  }
+
 }

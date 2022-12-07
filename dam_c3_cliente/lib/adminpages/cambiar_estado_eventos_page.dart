@@ -16,12 +16,9 @@ class CambiarEstadoEventosPage extends StatefulWidget {
 class _CambiarEstadoEventosPageState extends State<CambiarEstadoEventosPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Cambiar el estado de un Evento'),
-      ),
-      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Padding(
+    return Container(
+
+      child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [

@@ -107,24 +107,7 @@ class _HomeClientPageState extends State<HomeClientPage> {
               text:
                   'Muestra la portada de noticias de la empresa donde encontrara futuros eventos e informacion de entradas.',
             ),
-            muestra(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  foregroundColor: getColor(Colors.white, Colors.yellow),
-                  backgroundColor: getColor(Colors.red, Colors.black),
-                ),
-                child: Text('Cerrar Sesion'),
-
-                onPressed: () {
-                  //logout(context);
-                  logout(context);
-                },
-
-                //color: Colors.red,
-                //textColor: Colors.white,
-              ),
-              text: '',
-            ),
+            
           ],
         ),
       ),
@@ -140,15 +123,5 @@ class _HomeClientPageState extends State<HomeClientPage> {
       }
     };
     return MaterialStateProperty.resolveWith(getcolor);
-  }
-
-  void logout(BuildContext context) async {
-    //cerrar sesion en firebase
-    await FirebaseAuth.instance.signOut();
-    Authentificator().signOutGoogle();
-    //redirigir al login
-    MaterialPageRoute route =
-        MaterialPageRoute(builder: ((context) => LoginPage()));
-    Navigator.pushReplacement(context, route);
   }
 }

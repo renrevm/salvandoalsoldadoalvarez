@@ -15,119 +15,62 @@ import 'login_page.dart';
 
 // ignore: must_be_immutable
 class HomeAdministradorPage extends StatefulWidget {
-  //const HomeAdministradorPage({key});
   String nombre, correo, url;
   HomeAdministradorPage(this.nombre, this.correo, this.url);
+
   @override
   State<HomeAdministradorPage> createState() => _HomeAdministradorPageState();
 }
 
 class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
+  int paginaSel = 0;
+  final paginas = [PublicarNoticiasPage(widget.nombre, widget.correo, widget.url),ListarEventosTryPage(widget.nombre, widget.correo, widget.url),
+                   CambiarEstadoEventosPage(widget.nombre, widget.correo, widget.url), InformacionEventosPage(widget.nombre, widget.correo, widget.url)];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Administrador'),
-        backgroundColor: Colors.purple,
+        backgroundColor: Color.fromARGB(255, 235, 30, 75),
       ),
       drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                "https://i.pinimg.com/originals/3e/44/2e/3e442e5eb7f03dbd40a71b70531f4230.jpg",
-              ),
-              fit: BoxFit.cover),
+      body: paginas[paginaSel],
+      bottomNavigationBar: BottomNavigationBar(
+        //type: BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: paginaSel,
+        onTap: (index) {
+          //print('Tap: ' + index.toString()); //Imprime en la consola el index
+          setState(() {
+            paginaSel = index;
+          });
+        },
+      selectedItemColor: Color.fromARGB(255, 235, 30, 75),
+      iconSize: 25.0,
+      selectedFontSize: 14.0,
+      unselectedFontSize: 12.0,
+        items: [
+          BottomNavigationBarItem(
+          icon: Icon(Icons.newspaper),
+          label: 'Noticias'
         ),
-        child: GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: 4 / 3, //relacion de aspecto
-          children: <Widget>[
-            muestra(
-              child: ElevatedButton(
-                child: Text('Listar Eventos'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ListarEventosTryPage(
-                              widget.nombre, widget.correo, widget.url)));
-                },
-
-                //color: Colors.purpleAccent,
-                //textColor: Colors.white,
-              ),
-              text:
-                  'Muestra el listado de eventos con sus respectivas entradas disponibles.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text('Cambiar Estado'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CambiarEstadoEventosPage(
-                              widget.nombre, widget.correo, widget.url)));
-                },
-                //color: Colors.purpleAccent,
-                //textColor: Colors.white,
-              ),
-              text:
-                  'Cambia el estado de un evento para venta de entradas solo a eventos vigentes.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text(
-                  'Informacion de eventos',
-                  textAlign: TextAlign.center,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => InformacionEventosPage(
-                              widget.nombre, widget.correo, widget.url)));
-                },
-                //color: Colors.purpleAccent,
-                //textColor: Colors.white,
-              ),
-              text:
-                  'Obtener informacion de eventos tanto vigentes como finalizados respecto a las ventas.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text('Noticias'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PortadaNoticiasPage(
-                              widget.nombre, widget.correo, widget.url)));
-                },
-                //color: Colors.purpleAccent,
-                //textColor: Colors.white,
-              ),
-              text:
-                  'Publicar noticias de eventos o entradas proximas en la portada principal de la aplicacion.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text('Cerrar Sesion'),
-                onPressed: () {
-                  logout(context);
-                },
-                //color: Colors.red,
-                //textColor: Colors.white,
-              ),
-              text: '',
-            ),
-          ],
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shop),
+          label: 'Listar Eventos'
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list),
+          label: 'Cambiar Estado'
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list),
+          label: 'Informacion'
+        ),
+        ],
       ),
     );
   }
-
   void logout(BuildContext context) async {
     //cerrar sesion en firebase
     await FirebaseAuth.instance.signOut();

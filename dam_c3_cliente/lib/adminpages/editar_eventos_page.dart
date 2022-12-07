@@ -4,7 +4,8 @@ import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
 class EditarEventosPage extends StatefulWidget {
-  const EditarEventosPage({key});
+  String nombre, correo, url;
+  EditarEventosPage(this.nombre, this.correo, this.url);
 
   @override
   State<EditarEventosPage> createState() => _EditarEventosPageState();
@@ -15,9 +16,10 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Eventos'),
+        title: Text('Editar Evento'),
       ),
-      //drawer: MenuPage('', '', ''),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
+
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

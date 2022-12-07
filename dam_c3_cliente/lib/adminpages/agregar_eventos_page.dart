@@ -4,7 +4,8 @@ import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
 class AgregarEventosPage extends StatefulWidget {
-  const AgregarEventosPage({key});
+  String nombre, correo, url;
+  AgregarEventosPage(this.nombre, this.correo, this.url);
 
   @override
   State<AgregarEventosPage> createState() => _AgregarEventosPageState();
@@ -17,7 +18,8 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
       appBar: AppBar(
         title: Text('Agregar Eventos'),
       ),
-      //drawer: MenuPage('', '', ''),
+      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
+
 
       body: Padding(
         padding: const EdgeInsets.all(15),

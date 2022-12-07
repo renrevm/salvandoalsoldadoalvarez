@@ -7,9 +7,9 @@ import '../pages/menu_page.dart';
 
 // ignore: must_be_immutable
 class ListarEntradasCompPage extends StatefulWidget {
-  //const ListarEntradasCompPage({key});
   String nombre, correo, url;
-  ListarEntradasCompPage(this.nombre, this.correo, this.url);
+  ListarEntradasCompPage(this.nombre,this.correo,this.url);
+
   @override
   State<ListarEntradasCompPage> createState() => _ListarEntradasCompPageState();
 }
@@ -17,37 +17,50 @@ class ListarEntradasCompPage extends StatefulWidget {
 class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Listado de Compra de entradas'),
-      ),
-      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text(
-              'Eventos vigentes o finalizados: ',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Container(
+
+      child:Container(
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    "https://img2.wallspic.com/crops/1/8/8/2/5/152881/152881-astronauta-amoled-animacion-espacio-de_dibujos_animados-1242x2688.png",
+                  ),
+                  fit: BoxFit.cover),
             ),
-            ElevatedButton(
-              child: Text('Ver detalle de entrada'),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ButtonStyle(
+                  foregroundColor: getColor(Colors.white, Colors.yellow),
+                  backgroundColor: getColor(Color.fromARGB(255, 140, 25, 155), Colors.black),
+                ),
+                  child: Text('Ver detalle de entrada'),
               onPressed: () => {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DetalleEntradaPage())),
+                        builder: (context) => DetalleEntradaPage(widget.nombre, widget.correo, widget.url))),
               },
+              
             ),
-            ElevatedButton(
-              child: Text('Volver al menu anterior'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              ],
             ),
-          ],
-        ),
+          ),
       ),
+      
     );
   }
+  MaterialStateProperty<Color> getColor(Color color, Color colorPressed) {
+    final getcolor = (Set<MaterialState> states) {
+      if (states.contains(MaterialState.pressed)) {
+        return colorPressed;
+      } else {
+        return color;
+      }
+    };
+    return MaterialStateProperty.resolveWith(getcolor);
+  }
+
 }
