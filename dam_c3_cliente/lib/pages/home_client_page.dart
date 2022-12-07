@@ -52,8 +52,7 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ComprarEntradasPage(
-                              widget.nombre, widget.correo, widget.url)));
+                          builder: (context) => ComprarEntradasPage()));
                 },
 
                 //color: Colors.purpleAccent,
@@ -74,8 +73,7 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ListarEntradasCompPage(
-                              widget.nombre, widget.correo, widget.url)));
+                          builder: (context) => ListarEntradasCompPage()));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,
@@ -98,8 +96,7 @@ class _HomeClientPageState extends State<HomeClientPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PortadaNoticiasPage(
-                              widget.nombre, widget.correo, widget.url)));
+                          builder: (context) => PortadaNoticiasPage()));
                 },
                 //color: Colors.purpleAccent,
                 //textColor: Colors.white,
@@ -107,7 +104,6 @@ class _HomeClientPageState extends State<HomeClientPage> {
               text:
                   'Muestra la portada de noticias de la empresa donde encontrara futuros eventos e informacion de entradas.',
             ),
-            
           ],
         ),
       ),

@@ -81,11 +81,8 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
         ),
         backgroundColor: Color(kAccentColor1),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PublicarNoticiasPage(
-                      widget.nombre, widget.correo, widget.url)));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => PublicarNoticiasPage()));
         },
       ),
     );

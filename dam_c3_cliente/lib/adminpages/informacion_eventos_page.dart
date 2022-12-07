@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class InformacionEventosPage extends StatefulWidget {
-  //const InformacionEventosPage({key});
-  String nombre, correo, url;
-  InformacionEventosPage(this.nombre, this.correo, this.url);
+  const InformacionEventosPage({key});
+
   @override
   State<InformacionEventosPage> createState() => _InformacionEventosPageState();
 }
@@ -16,15 +15,14 @@ class _InformacionEventosPageState extends State<InformacionEventosPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-  
       child: Container(
         decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                    "https://i.pinimg.com/originals/f8/89/53/f889537660898798bb24dc42466e3000.jpg",
-                  ),
-                  fit: BoxFit.cover),
-            ),
+          image: DecorationImage(
+              image: NetworkImage(
+                "https://i.pinimg.com/originals/f8/89/53/f889537660898798bb24dc42466e3000.jpg",
+              ),
+              fit: BoxFit.cover),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
