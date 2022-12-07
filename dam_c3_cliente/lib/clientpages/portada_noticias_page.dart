@@ -43,6 +43,13 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ListTile(
+                    /*leading: Container(
+                      height: 15,
+                      width: 15,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(100)),
+                    ),*/
                     title: Text(
                       noticias['titulo'],
                       textAlign: TextAlign.center,
