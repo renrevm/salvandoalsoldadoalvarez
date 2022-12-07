@@ -18,30 +18,39 @@ class _CambiarEstadoEventosPageState extends State<CambiarEstadoEventosPage> {
   Widget build(BuildContext context) {
     return Container(
 
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text(
-              'Eventos',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      child: Container(
+        decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    "https://i.pinimg.com/236x/17/9a/dc/179adc8894ece1287d582b5e8cce80cb.jpg",
+                  ),
+                  fit: BoxFit.cover),
             ),
-            ElevatedButton(
-              child: Row(
-                children: [
-                  Text('Aceptar'),
-                  Icon(Icons.arrow_forward_ios),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Text(
+                'Eventos',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              onPressed: () => {},
-            ),
-            ElevatedButton(
-              child: Text('Volver al menu anterior'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              ElevatedButton(
+                child: Row(
+                  children: [
+                    Text('Aceptar'),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
+                ),
+                onPressed: () => {},
+              ),
+              ElevatedButton(
+                child: Text('Volver al menu anterior'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

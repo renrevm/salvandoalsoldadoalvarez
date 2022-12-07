@@ -20,30 +20,39 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
         title: Text('Borrar Evento'),
       ),
       drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Text(
-              'Evento',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      body: Container(
+        decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    "https://i.pinimg.com/originals/f4/e8/70/f4e870d0bbbd41caa5b6960c7f549200.png",
+                  ),
+                  fit: BoxFit.cover),
             ),
-            ElevatedButton(
-              child: Row(
-                children: [
-                  Text('Aceptar'),
-                  Icon(Icons.arrow_forward_ios),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Text(
+                'Evento',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              onPressed: () => {},
-            ),
-            ElevatedButton(
-              child: Text('Volver al menu anterior'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              ElevatedButton(
+                child: Row(
+                  children: [
+                    Text('Aceptar'),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
+                ),
+                onPressed: () => {},
+              ),
+              ElevatedButton(
+                child: Text('Volver al menu anterior'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
