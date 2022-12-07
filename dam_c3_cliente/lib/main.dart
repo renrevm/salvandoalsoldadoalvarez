@@ -1,7 +1,3 @@
-import 'package:dam_c3_cliente/clientpages/listar_entradas_comp_page.dart';
-
-import 'package:dam_c3_cliente/pages/home_administrador_page.dart';
-import 'package:dam_c3_cliente/pages/home_client_page.dart';
 import 'package:dam_c3_cliente/pages/login_page.dart';
 import 'package:flutter/material.dart';
 

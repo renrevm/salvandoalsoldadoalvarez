@@ -3,11 +3,7 @@
 import 'package:dam_c3_cliente/adminpages/agregar_eventos_page.dart';
 import 'package:dam_c3_cliente/adminpages/borrar_eventos_page.dart';
 import 'package:dam_c3_cliente/adminpages/editar_eventos_page.dart';
-import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/home_administrador_page.dart';
-
 import '../widgets/muestra.dart';
 
 // ignore: must_be_immutable
@@ -80,17 +76,6 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
               ),
               text:
                   'Elimina un evento y sus entradas disponibles para la venta del listado.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text('Volver al menu anterior.'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                //color: Colors.red,
-                //textColor: Colors.white,
-              ),
-              text: '',
             ),
           ],
         ),

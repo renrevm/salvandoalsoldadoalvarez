@@ -19,21 +19,36 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Color(kPrimaryColor)),
+      decoration: kContainerDegradeMenu,
       child: Column(
         children: [
-          ElevatedButton(
-            //style: ,
-            child: Icon(
-              MdiIcons.newspaper,
-              color: Color(kPrimaryColor),
+          Divider(
+            height: 10,
+          ),
+          Container(
+            height: 40,
+            width: 300,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(50.0))),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(kSecundaryColor),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)))),
+              child: Icon(
+                MdiIcons.newspaper,
+                color: Color(kAccentColor1),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PublicarNoticiasPage()));
+              },
             ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PublicarNoticiasPage()));
-            },
+          ),
+          Divider(
+            height: 10,
           ),
           Expanded(
             child: StreamBuilder(

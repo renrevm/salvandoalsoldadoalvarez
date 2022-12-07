@@ -1,5 +1,6 @@
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../clientpages/portada_noticias_page.dart';
 import '../clientpages/comprar_entradas_page.dart';
@@ -49,7 +50,7 @@ class _HomeClientPage2State extends State<HomeClientPage2> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.shop,
+                MdiIcons.ticket,
                 color: Color(kAccentColor1),
               ),
               label: 'Eventos'),
@@ -62,10 +63,10 @@ class _HomeClientPage2State extends State<HomeClientPage2> {
           ),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.list,
+                MdiIcons.ticketAccount,
                 color: Color(kAccentColor1),
               ),
-              label: 'Listado Entradas'),
+              label: 'Mis Entradas'),
         ],
       ),
     );

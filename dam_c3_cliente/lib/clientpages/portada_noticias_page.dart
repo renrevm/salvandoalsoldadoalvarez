@@ -3,12 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import '../pages/menu_page.dart';
 import '../services/firestore_service.dart';
-import 'comprar_entradas_page.dart';
-import 'listar_entradas_comp_page.dart';
 
 // ignore: must_be_immutable
 class PortadaNoticiasPage extends StatefulWidget {
@@ -60,6 +55,9 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 13, fontFamily: 'system-ui'),
                     ),
+                    onTap: () {
+                      //
+                    },
                   ),
                 ),
               );

@@ -1,6 +1,7 @@
 import 'package:dam_c3_cliente/adminpages/portada_noticias_page.dart';
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../adminpages/informacion_eventos_page.dart';
 import '../adminpages/listar_eventos_try_page.dart';
 import 'menu_page.dart';
@@ -16,10 +17,10 @@ class HomeAdministradorPage2 extends StatefulWidget {
 }
 
 class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
-  int paginaSel = 0;
+  int paginaSel = 1;
   final paginas = [
-    PortadaNoticiasPage(),
     ListarEventosTryPage(),
+    PortadaNoticiasPage(),
     //CambiarEstadoEventosPage(),
     InformacionEventosPage()
   ];
@@ -35,6 +36,7 @@ class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
       body: paginas[paginaSel],
       bottomNavigationBar: BottomNavigationBar(
         //type: BottomNavigationBarType.fixed,
+        backgroundColor: Color(kTerciaryColor),
         type: BottomNavigationBarType.fixed,
         currentIndex: paginaSel,
         onTap: (index) {
@@ -43,16 +45,30 @@ class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
             paginaSel = index;
           });
         },
-        selectedItemColor: Color.fromARGB(255, 235, 30, 75),
+        selectedItemColor: Color(kAccentColor1),
         iconSize: 25.0,
         selectedFontSize: 14.0,
         unselectedFontSize: 12.0,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper), label: 'Noticias'),
-          BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Eventos'),
-          //BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Cambiar Estado'),
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Informacion'),
+              icon: Icon(
+                MdiIcons.ticket,
+                color: Color(kAccentColor1),
+              ),
+              label: 'Eventos'),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.newspaper,
+              color: Color(kAccentColor1),
+            ),
+            label: 'Noticias',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list,
+                color: Color(kAccentColor1),
+              ),
+              label: 'Listado Entradas'),
         ],
       ),
     );
