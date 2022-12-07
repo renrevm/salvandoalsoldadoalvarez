@@ -16,6 +16,7 @@ class _MostrarNoticiaState extends State<MostrarNoticia> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Noticia'),
         backgroundColor: Color(kPrimaryColor),
       ),
       body: Container(

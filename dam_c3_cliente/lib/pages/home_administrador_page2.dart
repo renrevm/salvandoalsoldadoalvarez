@@ -29,7 +29,25 @@ class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Administrador'),
+        title: Row(
+          children: [
+            Text(
+              'PUNTOTICKETEK  ',
+              style: TextStyle(
+                  color: Color(kAccentColor1),
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w900),
+            ),
+            Text(
+              'MASTER',
+              style: TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 20,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w900),
+            ),
+          ],
+        ),
         backgroundColor: Color(kPrimaryColor),
       ),
       drawer: MenuPage(widget.nombre, widget.correo, widget.url),
