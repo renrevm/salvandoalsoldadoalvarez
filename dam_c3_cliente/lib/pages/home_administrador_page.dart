@@ -25,7 +25,7 @@ class HomeAdministradorPage extends StatefulWidget {
 class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
   int paginaSel = 0;
   final paginas = [
-    PublicarNoticiasPage(),
+    PortadaNoticiasPage(),
     ListarEventosTryPage(),
     CambiarEstadoEventosPage(),
     InformacionEventosPage()
