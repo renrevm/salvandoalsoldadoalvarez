@@ -12,9 +12,8 @@ import '../widgets/muestra.dart';
 
 // ignore: must_be_immutable
 class ListarEventosTryPage extends StatefulWidget {
-  //const ListarEventosTryPage({key});
-  String nombre, correo, url;
-  ListarEventosTryPage(this.nombre, this.correo, this.url);
+  const ListarEventosTryPage({key});
+
   @override
   State<ListarEventosTryPage> createState() => _ListarEventosTryPageState();
 }
@@ -42,7 +41,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AgregarEventosPage(widget.nombre, widget.correo, widget.url)));
+                          builder: (context) => AgregarEventosPage()));
                 },
                 //color: Colors.blueAccent.shade200,
                 //textColor: Colors.white,
@@ -57,7 +56,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => EditarEventosPage(widget.nombre, widget.correo, widget.url)));
+                          builder: (context) => EditarEventosPage()));
                 },
                 //color: Colors.blueAccent.shade200,
                 //textColor: Colors.white,
@@ -74,7 +73,7 @@ class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => BorrarEventosPage(widget.nombre, widget.correo, widget.url)));
+                          builder: (context) => BorrarEventosPage()));
                 },
                 //color: Colors.blueAccent.shade200,
                 //textColor: Colors.white,

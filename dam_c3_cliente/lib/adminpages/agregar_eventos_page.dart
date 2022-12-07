@@ -4,8 +4,7 @@ import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
 class AgregarEventosPage extends StatefulWidget {
-  String nombre, correo, url;
-  AgregarEventosPage(this.nombre, this.correo, this.url);
+  const AgregarEventosPage({key});
 
   @override
   State<AgregarEventosPage> createState() => _AgregarEventosPageState();
@@ -14,46 +13,38 @@ class AgregarEventosPage extends StatefulWidget {
 class _AgregarEventosPageState extends State<AgregarEventosPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Agregar Eventos'),
-      ),
-      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-
-
-      body: Container(
-        decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                    "https://i.pinimg.com/originals/2e/bc/cd/2ebccd9056ed62454033e76aab235d5f.png",
-                  ),
-                  fit: BoxFit.cover),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: NetworkImage(
+              "https://i.pinimg.com/originals/2e/bc/cd/2ebccd9056ed62454033e76aab235d5f.png",
             ),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              Text(
-                'Eventos',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            fit: BoxFit.cover),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            Text(
+              'Eventos',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
+              child: Row(
+                children: [
+                  Text('Aceptar'),
+                  Icon(Icons.arrow_forward_ios),
+                ],
               ),
-              ElevatedButton(
-                child: Row(
-                  children: [
-                    Text('Aceptar'),
-                    Icon(Icons.arrow_forward_ios),
-                  ],
-                ),
-                onPressed: () => {},
-              ),
-              ElevatedButton(
-                child: Text('Volver al menu anterior'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
+              onPressed: () => {},
+            ),
+            ElevatedButton(
+              child: Text('Volver al menu anterior'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
       ),
     );

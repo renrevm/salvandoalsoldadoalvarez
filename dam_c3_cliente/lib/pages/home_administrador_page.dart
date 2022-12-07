@@ -24,8 +24,12 @@ class HomeAdministradorPage extends StatefulWidget {
 
 class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
   int paginaSel = 0;
-  final paginas = [PublicarNoticiasPage(widget.nombre, widget.correo, widget.url),ListarEventosTryPage(widget.nombre, widget.correo, widget.url),
-                   CambiarEstadoEventosPage(widget.nombre, widget.correo, widget.url), InformacionEventosPage(widget.nombre, widget.correo, widget.url)];
+  final paginas = [
+    PortadaNoticiasPage(),
+    ListarEventosTryPage(),
+    CambiarEstadoEventosPage(),
+    InformacionEventosPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,31 +50,23 @@ class _HomeAdministradorPageState extends State<HomeAdministradorPage> {
             paginaSel = index;
           });
         },
-      selectedItemColor: Color.fromARGB(255, 235, 30, 75),
-      iconSize: 25.0,
-      selectedFontSize: 14.0,
-      unselectedFontSize: 12.0,
+        selectedItemColor: Color.fromARGB(255, 235, 30, 75),
+        iconSize: 25.0,
+        selectedFontSize: 14.0,
+        unselectedFontSize: 12.0,
         items: [
           BottomNavigationBarItem(
-          icon: Icon(Icons.newspaper),
-          label: 'Noticias'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shop),
-          label: 'Listar Eventos'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Cambiar Estado'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Informacion'
-        ),
+              icon: Icon(Icons.newspaper), label: 'Noticias'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shop), label: 'Listar Eventos'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.list), label: 'Cambiar Estado'),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Informacion'),
         ],
       ),
     );
   }
+
   void logout(BuildContext context) async {
     //cerrar sesion en firebase
     await FirebaseAuth.instance.signOut();

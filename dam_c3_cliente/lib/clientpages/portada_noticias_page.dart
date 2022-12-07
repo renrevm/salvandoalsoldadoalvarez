@@ -12,9 +12,8 @@ import 'listar_entradas_comp_page.dart';
 
 // ignore: must_be_immutable
 class PortadaNoticiasPage extends StatefulWidget {
-  //const PortadaNoticiasPage({key});
-  String nombre, correo, url;
-  PortadaNoticiasPage(this.nombre, this.correo, this.url);
+  const PortadaNoticiasPage({key});
+
   @override
   State<PortadaNoticiasPage> createState() => _PortadaNoticiasPageState();
 }
@@ -22,16 +21,9 @@ class PortadaNoticiasPage extends StatefulWidget {
 class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(kPrimaryColor),
-        title: Text(
-          'Noticias',
-        ),
-      ),
-      drawer: MenuPage(widget.nombre, widget.correo, widget.url),
-      backgroundColor: Color(kPrimaryColor),
-      body: StreamBuilder(
+    return Container(
+      decoration: kContainerDegradeMenu,
+      child: StreamBuilder(
         stream: FirestoreService.noticias(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData ||
@@ -74,8 +66,7 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
             },
           );
         },
-      ), 
+      ),
     );
   }
-
 }

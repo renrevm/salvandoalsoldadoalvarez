@@ -9,7 +9,9 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'home_administrador_page2.dart';
 import 'home_client_page.dart';
+import 'home_client_page2.dart';
 // cd a android y .\gradlew signingReport para encontrar huella digital sh1
 
 class LoginPage extends StatefulWidget {
@@ -154,14 +156,14 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeAdministradorPage(
+                                builder: (context) => HomeAdministradorPage2(
                                     nombre, correo, url)));
                       } else {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    HomeClientPage(nombre, correo, url)));
+                                    HomeClientPage2(nombre, correo, url)));
                       }
                     },
                   ),
