@@ -1,9 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:dam_c3_cliente/adminpages/cambiar_estado_eventos_page.dart';
+//import 'package:dam_c3_cliente/adminpages/cambiar_estado_eventos_page.dart';
 import 'package:flutter/material.dart';
 
+import '../componentes/cartel_editar_comps.dart';
 import '../constant.dart';
+import 'cambiar_estado_eventos_page.dart';
 
 class EditarEventosPage extends StatefulWidget {
   const EditarEventosPage({key});
@@ -13,62 +15,87 @@ class EditarEventosPage extends StatefulWidget {
 }
 
 class _EditarEventosPageState extends State<EditarEventosPage> {
+  //int paginaSel = 0;
+  //final paginas = [EditarEventosPage(),EditarEventosPage(), BorrarEventosPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Editar Evento',
-          style: kTituloAppbar,
-        ),
-        backgroundColor: Color(kPrimaryColor),
-        shadowColor: Color(kPrimaryColor),
+      backgroundColor: Colors.black,
+      body: ListView(
+        
+        children: <Widget>[
+          CartelEditarComps(),
+        ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                "https://i.pinimg.com/564x/6d/61/91/6d619196b3d70575506c0d2362c0d122.jpg",
-              ),
-              fit: BoxFit.cover),
+      //bottomNavigationBar: this.navInferior(),
+    );
+  }
+
+  // BottomNavigationBar navInferior(){
+  //   return BottomNavigationBar(
+      
+  //     currentIndex: paginaSel,
+  //     onTap: (index) {
+  //         //print('Tap: ' + index.toString()); //Imprime en la consola el index
+  //         setState(() {
+  //           paginaSel = index;
+  //         });
+  //       },
+  //     backgroundColor: Colors.black,
+  //     type: BottomNavigationBarType.fixed,
+  //     selectedItemColor: Color.fromARGB(255, 202, 71, 209),
+  //     unselectedItemColor: Colors.white,
+  //     iconSize: 25.0,
+  //     selectedFontSize: 14.0,
+  //     unselectedFontSize: 12.0,
+  //     items: <BottomNavigationBarItem>[
+  //       BottomNavigationBarItem(
+  //         icon: Icon(Icons.shop),
+  //         label: ('Noticias')         
+  //       ),
+  //         BottomNavigationBarItem(
+  //         icon: Icon(Icons.list),
+  //         label: ('Eventos')         
+  //       ),
+  //         BottomNavigationBarItem(
+  //         icon: Icon(Icons.newspaper),
+  //         label: ('Entradas')         
+  //       ),
+  //     ],
+  //   );
+
+  
+
+  Widget listahorizontal(String titulo, Widget item, int cantidad){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:6.0,vertical: 10.0),
+          child: Text(
+            titulo,
+            style: TextStyle(color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          
+          ),),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              Text(
-                'Eventos',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              ElevatedButton(
-                child: Row(
-                  children: [
-                    Text('Aceptar'),
-                    Icon(Icons.arrow_forward_ios),
-                  ],
-                ),
-                onPressed: () => {},
-              ),
-               ElevatedButton(
-                child: Text('Cambiar estado'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CambiarEstadoEventosPage()));
-                },
-              ),
-              ElevatedButton(
-                child: Text('Volver al menu anterior'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-             
-            ],
+
+          Container(
+            height: 110.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: cantidad,
+              
+              itemBuilder: (context, index) {
+                return item;
+              } ,
+            ),
           ),
-        ),
-      ),
+
+      ],
+
     );
   }
 }
