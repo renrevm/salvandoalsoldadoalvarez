@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../constant.dart';
-import '../main.dart';
-
 import '../providers/eventos_provider.dart';
 import 'agregar_eventos_page.dart';
 import 'editar_eventos_page.dart';
@@ -27,24 +24,23 @@ class _EventosListarPageState extends State<EventosListarPage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-              Image.network("https://w0.peakpx.com/wallpaper/315/508/HD-wallpaper-astronaut-sherif-cloud-mirror-nice-reflection.jpg",
-              height: 750.0,
-              fit: BoxFit.cover,
-              ),
-              Container(
-                width: double.infinity,
-              height: 750.0,      
-              decoration: BoxDecoration(
+          Image.network(
+            "https://w0.peakpx.com/wallpaper/315/508/HD-wallpaper-astronaut-sherif-cloud-mirror-nice-reflection.jpg",
+            height: 750.0,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            width: double.infinity,
+            height: 750.0,
+            decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.center,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Colors.black26,
-                    Colors.black,
-                  ]
-                )
-              ),
-            ),
+                    begin: Alignment.center,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                  Colors.black26,
+                  Colors.black,
+                ])),
+          ),
           FutureBuilder(
             future: EventosProvider().getEventos(),
             builder: (context, AsyncSnapshot snapshot) {
@@ -71,14 +67,13 @@ class _EventosListarPageState extends State<EventosListarPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        EditarEventosPage(evento['cod_evento'])));
+                                    builder: (context) => EditarEventosPage(
+                                        evento['cod_evento'])));
                           },
-                          backgroundColor: Colors.purple,
+                          backgroundColor: Color(kPrimaryColor),
                           icon: Icons.edit,
                           label: 'Editar',
                         ),
-                        
                       ],
                     ),
                     endActionPane: ActionPane(
@@ -105,21 +100,20 @@ class _EventosListarPageState extends State<EventosListarPage> {
                           },
                           backgroundColor: Colors.red,
                           icon: MdiIcons.trashCan,
-                          
                           label: 'Borrar',
                         ),
                       ],
                     ),
                     //ListTile
                     child: ListTile(
-                      leading: Icon(MdiIcons.cube),
-                      iconColor: Colors.purpleAccent,
+                      leading: Icon(MdiIcons.ticketConfirmation),
+                      iconColor: Color(kSecundaryColor),
                       title: Text('${evento['nom_evento']}'),
                       textColor: Colors.white,
-                      subtitle: Text('Estado Evento: ${evento['estado_evento']}'),
+                      subtitle:
+                          Text('Estado Evento: ${evento['estado_evento']}'),
                       trailing: Text(
                         '\$' + fPrecio.format(evento['precio_entrada']),
-                        
                       ),
                       onLongPress: () {
                         //editar
