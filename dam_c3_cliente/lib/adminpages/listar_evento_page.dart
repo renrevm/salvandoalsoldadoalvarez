@@ -1,11 +1,15 @@
-import 'package:dam_c3_cliente/adminpages/agregar_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/editar_eventos_page.dart';
-import 'package:dam_c3_cliente/constant.dart';
-import 'package:dam_c3_cliente/providers/eventos_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../constant.dart';
+import '../main.dart';
+
+import '../providers/eventos_provider.dart';
+import 'agregar_eventos_page.dart';
+import 'editar_eventos_page.dart';
 
 class EventosListarPage extends StatefulWidget {
   const EventosListarPage({Key? key}) : super(key: key);
@@ -21,98 +25,119 @@ class _EventosListarPageState extends State<EventosListarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: EventosProvider().getEventos(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          return ListView.separated(
-            separatorBuilder: (context, index) => Divider(
-              thickness: 1.3,
+      body: Stack(
+        children: <Widget>[
+              Image.network("https://w0.peakpx.com/wallpaper/315/508/HD-wallpaper-astronaut-sherif-cloud-mirror-nice-reflection.jpg",
+              height: 750.0,
+              fit: BoxFit.cover,
+              ),
+              Container(
+                width: double.infinity,
+              height: 750.0,      
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.center,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Colors.black26,
+                    Colors.black,
+                  ]
+                )
+              ),
             ),
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-              var evento = snapshot.data[index];
-              return Slidable(
-                //action panes
-                startActionPane: ActionPane(
-                  motion: ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (context) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    EditarEventosPage(evento['cod_evento'])));
-                      },
-                      backgroundColor: Colors.purple,
-                      icon: Icons.edit,
-                      label: 'Editar',
-                    ),
-                    SlidableAction(
-                      onPressed: (context) {},
-                      backgroundColor: Colors.blue,
-                      icon: Icons.file_open,
-                      label: 'Archivar',
-                    ),
-                  ],
+          FutureBuilder(
+            future: EventosProvider().getEventos(),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              return ListView.separated(
+                separatorBuilder: (context, index) => Divider(
+                  thickness: 1.3,
                 ),
-                endActionPane: ActionPane(
-                  motion: ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (context) {
-                        confirmDialog(context, evento['nom_evento'])
-                            .then((confirma) {
-                          if (confirma) {
-                            // borrar
-                            EventosProvider()
-                                .borrar(evento['cod_evento'])
-                                .then((fueBorrado) {
-                              if (fueBorrado) {
-                                snapshot.data.removeAt(index);
-                                setState(() {});
-                                mostrarSnackbar(
-                                    'Evento ${evento['nom_evento']} borrado');
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  var evento = snapshot.data[index];
+                  return Slidable(
+                    //action panes
+                    startActionPane: ActionPane(
+                      motion: ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        EditarEventosPage(evento['cod_evento'])));
+                          },
+                          backgroundColor: Colors.purple,
+                          icon: Icons.edit,
+                          label: 'Editar',
+                        ),
+                        
+                      ],
+                    ),
+                    endActionPane: ActionPane(
+                      motion: ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            confirmDialog(context, evento['nom_evento'])
+                                .then((confirma) {
+                              if (confirma) {
+                                // borrar
+                                EventosProvider()
+                                    .borrar(evento['cod_evento'])
+                                    .then((fueBorrado) {
+                                  if (fueBorrado) {
+                                    snapshot.data.removeAt(index);
+                                    setState(() {});
+                                    mostrarSnackbar(
+                                        'Evento ${evento['nom_evento']} borrado');
+                                  }
+                                });
                               }
                             });
-                          }
+                          },
+                          backgroundColor: Colors.red,
+                          icon: MdiIcons.trashCan,
+                          
+                          label: 'Borrar',
+                        ),
+                      ],
+                    ),
+                    //ListTile
+                    child: ListTile(
+                      leading: Icon(MdiIcons.cube),
+                      iconColor: Colors.purpleAccent,
+                      title: Text('${evento['nom_evento']}'),
+                      textColor: Colors.white,
+                      subtitle: Text('Estado Evento: ${evento['estado_evento']}'),
+                      trailing: Text(
+                        '\$' + fPrecio.format(evento['precio_entrada']),
+                        
+                      ),
+                      onLongPress: () {
+                        //editar
+                        MaterialPageRoute route = MaterialPageRoute(
+                          builder: (context) =>
+                              EditarEventosPage(evento['cod_evento']),
+                        );
+                        Navigator.push(context, route).then((valor) {
+                          setState(() {});
                         });
                       },
-                      backgroundColor: Colors.red,
-                      icon: MdiIcons.trashCan,
-                      label: 'Borrar',
                     ),
-                  ],
-                ),
-                //ListTile
-                child: ListTile(
-                  leading: Icon(MdiIcons.cube),
-                  title: Text('${evento['nom_evento']}'),
-                  subtitle: Text('Estado Evento: ${evento['estado_evento']}'),
-                  trailing: Text(
-                    '\$' + fPrecio.format(evento['precio_entrada']),
-                  ),
-                  onLongPress: () {
-                    //editar
-                    MaterialPageRoute route = MaterialPageRoute(
-                      builder: (context) =>
-                          EditarEventosPage(evento['cod_evento']),
-                    );
-                    Navigator.push(context, route).then((valor) {
-                      setState(() {});
-                    });
-                  },
-                ),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Row(

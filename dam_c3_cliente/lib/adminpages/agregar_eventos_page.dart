@@ -1,10 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:dam_c3_cliente/providers/eventos_provider.dart';
-import 'package:dam_c3_cliente/widgets/box_degrade.dart';
+
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
+import '../providers/eventos_provider.dart';
+
 
 class AgregarEventosPage extends StatefulWidget {
   const AgregarEventosPage({key});
@@ -35,47 +36,50 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
           backgroundColor: Color(kPrimaryColor),
           shadowColor: Color(kPrimaryColor),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(
-                  "https://i.pinimg.com/originals/2e/bc/cd/2ebccd9056ed62454033e76aab235d5f.png",
-                ),
-                fit: BoxFit.cover),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-                top: 80, left: 20, right: 20, bottom: 200),
-            child: Container(
+        body: Stack(
+            children: <Widget>[
+              Image.network("https://images.alphacoders.com/971/971255.jpg",
+              height: 750.0,
+              fit: BoxFit.cover,
+              ),
+              Container(
+                width: double.infinity,
+              height: 750.0,      
               decoration: BoxDecoration(
-                  color: Color(kAccentColor1),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Form(
-                  child: ListView(
-                    children: [
-                      Divider(
-                        height: 30,
-                        thickness: 0,
-                      ),
-                      campoCodigo(),
-                      mostrarError(errCodigo),
-                      campoNombre(),
-                      mostrarError(errNombre),
-                      campoPrecio(),
-                      mostrarError(errPrecio),
-                      // campoEstado(),
-                      // mostrarError(errStock),
-
-                      botonAgregar(),
-                    ],
-                  ),
-                ),
+                gradient: LinearGradient(
+                  begin: Alignment.center,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Colors.black26,
+                    Colors.black,
+                  ]
+                )
+              ),
+            ),
+            Padding(
+            padding: const EdgeInsets.all(15),
+            child: Form(
+              child: ListView(
+                children: [
+                  campoCodigo(),
+                  mostrarError(errCodigo),
+                  campoNombre(),
+                  mostrarError(errNombre),
+                  campoPrecio(),
+                  mostrarError(errPrecio),
+                  // campoEstado(),
+                  // mostrarError(errStock),
+                  botonAgregar(),
+                ],
               ),
             ),
           ),
-        ));
+          ],
+        ),
+
+ 
+        
+        );
   }
 
   Container mostrarError(String error) {
@@ -90,10 +94,17 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
 
   TextFormField campoCodigo() {
     return TextFormField(
+      
       controller: codigoCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'Código de evento.',
+        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
+        
       ),
+      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -101,8 +112,13 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
     return TextFormField(
       controller: nombreCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'Nombre de evento.',
+        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
       ),
+      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -110,8 +126,14 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
     return TextFormField(
       controller: precioCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'Precio de entrada.',
+        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
+        
       ),
+      style: TextStyle(color: Colors.white),
       keyboardType: TextInputType.number,
     );
   }
@@ -120,7 +142,11 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
     return TextFormField(
       controller: estadoCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'Estado del evento.',
+        labelStyle: TextStyle(color: Colors.white),
       ),
       keyboardType: TextInputType.number,
     );
@@ -129,13 +155,10 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
   Container botonAgregar() {
     return Container(
       margin: EdgeInsets.only(top: 10),
-      height: 40,
-      decoration: BoxDecoration(
-          color: Color(kPrimaryColor), borderRadius: BorderRadius.circular(20)),
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Color(kPrimaryColor),
+          primary: Colors.purple,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
