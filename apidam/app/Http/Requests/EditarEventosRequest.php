@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-class EventosRequest extends FormRequest
+class EditarEventosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +23,15 @@ class EventosRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-
     public function rules()
     {
-            return [
-                    'cod_evento'=> 'required|min:3|unique:eventos,cod_evento',
-                    'nom_evento'=> 'required',
-                    'precio_entrada'=> 'required|numeric|gte:1',
-                    //'estado_evento'=> 'required',
-            ];
+        return [
+            'cod_evento' => ['required','max:10','min:3',Rule::unique('eventos')->ignoreModel($this->evento)],
+            //'cod_evento'=> 'required|min:3',
+            'nom_evento'=> 'required',
+            'precio_entrada'=> 'required|numeric|gte:1',
+            //'estado_evento'=> 'required',
+        ];
     }
     public function messages(){
         return [
