@@ -89,9 +89,17 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(kSecundaryColor),
-        child: Icon(
-          MdiIcons.newspaper,
-          color: Color(kAccentColor1),
+        child: Row(
+          children: [
+            Icon(
+              Icons.add,
+              color: Color(kAccentColor1),
+            ),
+            Icon(
+              MdiIcons.newspaper,
+              color: Color(kAccentColor1),
+            ),
+          ],
         ),
         onPressed: () {
           Navigator.push(context,

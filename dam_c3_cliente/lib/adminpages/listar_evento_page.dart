@@ -1,5 +1,6 @@
 import 'package:dam_c3_cliente/adminpages/agregar_eventos_page.dart';
 import 'package:dam_c3_cliente/adminpages/editar_eventos_page.dart';
+import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -114,7 +115,13 @@ class _EventosListarPageState extends State<EventosListarPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Row(
+          children: [
+            Icon(Icons.add),
+            Icon(MdiIcons.ticketOutline),
+          ],
+        ),
+        backgroundColor: Color(kSecundaryColor),
         onPressed: () {
           MaterialPageRoute route = MaterialPageRoute(
             builder: (context) => AgregarEventosPage(),
