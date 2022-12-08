@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class EventosRequest extends FormRequest
 {
@@ -21,14 +23,30 @@ class EventosRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
+
     public function rules()
     {
-        return [
-            'cod_evento'=> 'required|min:3|unique:eventos,cod_evento',
+            if ($this->isMethod('post')) {
+                return [
+                    'cod_evento'=> 'required|min:3|unique:eventos,cod_evento',
+                    'nom_evento'=> 'required',
+                    'precio_entrada'=> 'required|numeric|gte:1',
+                    //'estado_evento'=> 'required',
+                ];
+            }elseif($this->isMethod('put')) {
+                return [
+                    'cod_evento'=> 'required|min:3|unique:eventos,cod_evento,'.$this->cod_evento_new.',cod_evento',
+                    'nom_evento'=> 'required',
+                    'precio_entrada'=> 'required|numeric|gte:1',
+                    //'estado_evento'=> 'required',
+                ];
+            }
+                
+            /*
+            'cod_evento'=> 'required|min:3',
             'nom_evento'=> 'required',
             'precio_entrada'=> 'required|numeric|gte:1',
-            //'estado_evento'=> 'required',
-        ];
+            //'estado_evento'=> 'required',*/
     }
     public function messages(){
         return [
