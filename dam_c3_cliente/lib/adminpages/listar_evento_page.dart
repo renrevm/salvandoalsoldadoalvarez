@@ -1,10 +1,10 @@
+import 'package:dam_c3_cliente/adminpages/agregar_eventos_page.dart';
+import 'package:dam_c3_cliente/adminpages/editar_eventos_page.dart';
+import 'package:dam_c3_cliente/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:proyectoclon/ADMIN/agregar_eventos_page.dart';
-import 'package:proyectoclon/ADMIN/editar_eventos_page.dart';
-import 'package:proyectoclon/providers/productos_provider.dart';
 
 class EventosListarPage extends StatefulWidget {
   const EventosListarPage({Key? key}) : super(key: key);

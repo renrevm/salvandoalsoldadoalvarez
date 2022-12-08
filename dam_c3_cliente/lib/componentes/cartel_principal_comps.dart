@@ -127,21 +127,23 @@ class _CartelPrincipalCompsState extends State<CartelPrincipalComps> {
             ),
             label: Text('Agregar Evento'),
           ),
-          ElevatedButton.icon(
+          /*ElevatedButton.icon(
             style: ButtonStyle(
               foregroundColor: getColor(Colors.white, Colors.yellow),
               backgroundColor: getColor(Color(kTerciaryColor), Colors.black),
             ),
             onPressed: () => {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => EditarEventosPage())),
+                  MaterialPageRoute(builder: (context) => EditarEventosPage(
+                    
+                  ))),
             },
             icon: Icon(
               Icons.edit,
               color: Colors.black,
             ),
             label: Text('Editar Evento'),
-          ),
+          ),*/
         ],
       ),
     );

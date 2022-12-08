@@ -1,7 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:dam_c3_cliente/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:proyectoclon/providers/productos_provider.dart';
+
 import '../constant.dart';
 
 class AgregarEventosPage extends StatefulWidget {
