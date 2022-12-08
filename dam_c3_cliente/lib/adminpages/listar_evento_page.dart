@@ -121,7 +121,7 @@ class _EventosListarPageState extends State<EventosListarPage> {
                           builder: (context) =>
                               EditarEventosPage(evento['cod_evento']),
                         );
-                        Navigator.push(context, route).then((valor) {
+                        Navigator.push(context, route).then((value) {
                           setState(() {});
                         });
                       },
