@@ -5,14 +5,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-
 import '../constant.dart';
 import '../providers/eventos_provider.dart';
 
 import 'detalle_compra_page.dart';
 import 'detalle_entrada_page.dart';
-
-
 
 class ComprarEntradasPage extends StatefulWidget {
   const ComprarEntradasPage({key});
@@ -29,24 +26,23 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-              Image.network("https://w0.peakpx.com/wallpaper/315/508/HD-wallpaper-astronaut-sherif-cloud-mirror-nice-reflection.jpg",
-              height: 750.0,
-              fit: BoxFit.cover,
-              ),
-              Container(
-                width: double.infinity,
-              height: 750.0,      
-              decoration: BoxDecoration(
+          Image.network(
+            "https://w0.peakpx.com/wallpaper/315/508/HD-wallpaper-astronaut-sherif-cloud-mirror-nice-reflection.jpg",
+            height: 750.0,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            width: double.infinity,
+            height: 750.0,
+            decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.center,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Colors.black38,
-                    Colors.black,
-                  ]
-                )
-              ),
-            ),
+                    begin: Alignment.center,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                  Colors.black38,
+                  Colors.black,
+                ])),
+          ),
           FutureBuilder(
             future: EventosProvider().getEventos(),
             builder: (context, AsyncSnapshot snapshot) {
@@ -64,20 +60,34 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
                 itemBuilder: (context, index) {
                   var evento = snapshot.data[index];
                   return ListTile(
-                    leading: Icon(MdiIcons.cube),
-                    iconColor: Colors.purpleAccent,
-                    title: Text('${evento['nom_evento']}'),
+                    leading: Icon(MdiIcons.ticketConfirmation),
+                    iconColor: Color(kSecundaryColor),
+                    title: Text(
+                      '${evento['nom_evento']}',
+                      style: TextStyle(fontSize: 17),
+                    ),
                     textColor: Colors.white,
-                    subtitle: Text('Estado Evento: ${evento['estado_evento']}'),
-                    trailing: Text(
+                    subtitle: Text(
                       '\$' + fPrecio.format(evento['precio_entrada']),
-                      
+                    ),
+                    trailing: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(kSecundaryColor),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50.0)))),
+                      onPressed: () {
+                        //
+                      },
+                      child: Text('Comprar'),
                     ),
                     onTap: () {
                       Navigator.push(
-                            context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetalleCompraPage(evento['nom_evento'],evento['precio_entrada'])));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetalleCompraPage(
+                                  evento['nom_evento'],
+                                  evento['precio_entrada'])));
                     },
                   );
                 },
@@ -86,7 +96,6 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
           ),
         ],
       ),
-    
     );
   }
 }

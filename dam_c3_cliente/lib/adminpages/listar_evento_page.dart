@@ -59,23 +59,23 @@ class _ListarEventosPageState extends State<ListarEventosPage> {
                   var evento = snapshot.data[index];
                   return Slidable(
                     //action panes
-                    startActionPane: ActionPane(
-                      motion: ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditarEventosPage(
-                                        evento['cod_evento'])));
-                          },
-                          backgroundColor: Color(kPrimaryColor),
-                          icon: Icons.edit,
-                          label: 'Editar',
-                        ),
-                      ],
-                    ),
+                    // startActionPane: ActionPane(
+                    //   motion: ScrollMotion(),
+                    //   children: [
+                    //     // SlidableAction(
+                    //     //   onPressed: (context) {
+                    //     //     Navigator.push(
+                    //     //         context,
+                    //     //         MaterialPageRoute(
+                    //     //             builder: (context) => EditarEventosPage(
+                    //     //                 evento['cod_evento'])));
+                    //     //   },
+                    //     //   backgroundColor: Color(kPrimaryColor),
+                    //     //   icon: Icons.edit,
+                    //     //   label: 'Editar',
+                    //     // ),
+                    //   ],
+                    // ),
                     endActionPane: ActionPane(
                       motion: ScrollMotion(),
                       children: [
