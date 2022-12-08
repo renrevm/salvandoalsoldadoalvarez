@@ -26,6 +26,7 @@ class EventosRequest extends FormRequest
 
     public function rules()
     {
+        /*
             if ($this->isMethod('post')) {
                 return [
                     'cod_evento'=> 'required|min:3|unique:eventos,cod_evento',
@@ -40,13 +41,15 @@ class EventosRequest extends FormRequest
                     'precio_entrada'=> 'required|numeric|gte:1',
                     //'estado_evento'=> 'required',
                 ];
-            }
+            }*/
                 
-            /*
-            'cod_evento'=> 'required|min:3',
+            return [
+            'cod_evento' => ['required','max:10','min:3',Rule::unique('eventos')->ignoreModel($this->evento)],
+            //'cod_evento'=> 'required|min:3',
             'nom_evento'=> 'required',
             'precio_entrada'=> 'required|numeric|gte:1',
-            //'estado_evento'=> 'required',*/
+            //'estado_evento'=> 'required',
+            ];
     }
     public function messages(){
         return [
