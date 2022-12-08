@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:dam_c3_cliente/providers/eventos_provider.dart';
+import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
@@ -43,20 +44,34 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
                 fit: BoxFit.cover),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Form(
-              child: ListView(
-                children: [
-                  campoCodigo(),
-                  mostrarError(errCodigo),
-                  campoNombre(),
-                  mostrarError(errNombre),
-                  campoPrecio(),
-                  mostrarError(errPrecio),
-                  // campoEstado(),
-                  // mostrarError(errStock),
-                  botonAgregar(),
-                ],
+            padding: const EdgeInsets.only(
+                top: 80, left: 20, right: 20, bottom: 200),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color(kAccentColor1),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Form(
+                  child: ListView(
+                    children: [
+                      Divider(
+                        height: 30,
+                        thickness: 0,
+                      ),
+                      campoCodigo(),
+                      mostrarError(errCodigo),
+                      campoNombre(),
+                      mostrarError(errNombre),
+                      campoPrecio(),
+                      mostrarError(errPrecio),
+                      // campoEstado(),
+                      // mostrarError(errStock),
+
+                      botonAgregar(),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -114,10 +129,13 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
   Container botonAgregar() {
     return Container(
       margin: EdgeInsets.only(top: 10),
+      height: 40,
+      decoration: BoxDecoration(
+          color: Color(kPrimaryColor), borderRadius: BorderRadius.circular(20)),
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.purple,
+          primary: Color(kPrimaryColor),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
