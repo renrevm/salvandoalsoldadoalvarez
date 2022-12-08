@@ -1,7 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:dam_c3_cliente/clientpages/detalle_entrada_page.dart';
+
 import 'package:flutter/material.dart';
+
+
+import '../widgets/get_color.dart';
+import 'detalle_entrada_page.dart';
 
 // ignore: must_be_immutable
 class ListarEntradasCompPage extends StatefulWidget {
@@ -14,48 +18,61 @@ class ListarEntradasCompPage extends StatefulWidget {
 class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                "https://img2.wallspic.com/crops/1/8/8/2/5/152881/152881-astronauta-amoled-animacion-espacio-de_dibujos_animados-1242x2688.png",
-              ),
-              fit: BoxFit.cover),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+    return Scaffold(
+      body: Container(
+          child: Stack(
             children: <Widget>[
-              ElevatedButton(
-                style: ButtonStyle(
-                  foregroundColor: getColor(Colors.white, Colors.yellow),
-                  backgroundColor:
-                      getColor(Color.fromARGB(255, 140, 25, 155), Colors.black),
+              Image.network("https://w0.peakpx.com/wallpaper/697/90/HD-wallpaper-astronaut-falling-in-black-hole.jpg",
+                height: 680.0,
+                fit: BoxFit.cover,
                 ),
-                child: Text('Ver detalle de entrada'),
-                onPressed: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DetalleEntradaPage(2))),
-                },
+              Container(
+                width: double.infinity,
+                height: 680.0,      
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.center,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                      Colors.black26,
+                      Colors.black,
+                    ]
+                  )
+                ),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                       
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
-      ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: ElevatedButton(
+                            style: ButtonStyle(
+                              foregroundColor: getColor(Colors.white, Colors.yellow),
+                              backgroundColor:
+                                  getColor(Color.fromARGB(255, 140, 25, 155), Colors.black),
+                            ),
+                            child: Text('Ver detalle de entrada'),
+                            onPressed: () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetalleEntradaPage(2))),
+                            },
+                          ),
+        
     );
+
   }
 
-  MaterialStateProperty<Color> getColor(Color color, Color colorPressed) {
-    final getcolor = (Set<MaterialState> states) {
-      if (states.contains(MaterialState.pressed)) {
-        return colorPressed;
-      } else {
-        return color;
-      }
-    };
-    return MaterialStateProperty.resolveWith(getcolor);
-  }
 }
