@@ -1,12 +1,8 @@
-
+import 'package:dam_c3_cliente/providers/eventos_provider.dart';
 import 'package:flutter/material.dart';
 
-import '../providers/eventos_provider.dart';
-
-
-
 class EditarEventosPage extends StatefulWidget {
-  String cod_evento;
+  final String cod_evento;
 
   EditarEventosPage(this.cod_evento, {Key? key}) : super(key: key);
 
@@ -20,94 +16,78 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
   TextEditingController precio_entradaCtrl = TextEditingController();
   TextEditingController estado_eventoCtrl = TextEditingController();
 
+  String errCodigo = '';
+  String errNombre = '';
+  String errPrecio = '';
+  String errEstadp = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Editar Producto'),
-        backgroundColor: Colors.purple,
       ),
-      body: Stack(
-        children: <Widget>[
-              Image.network("https://images.alphacoders.com/971/971255.jpg",
-              height: 750.0,
-              fit: BoxFit.cover,
-              ),
-              Container(
-                width: double.infinity,
-              height: 750.0,      
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.center,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Colors.black26,
-                    Colors.black,
-                  ]
-                )
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FutureBuilder(
-                future: EventosProvider().getEvento(widget.cod_evento),
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FutureBuilder(
+            future: EventosProvider().getEvento(widget.cod_evento),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
 
-                  var producto = snapshot.data;
-                  codigoCtrl.text = producto['cod_evento'];
-                  nom_eventoCtrl.text = producto['nom_evento'];
-                  precio_entradaCtrl.text = producto['precio_entrada'].toString();
-                  estado_eventoCtrl.text = producto['estado_evento'].toString();
+              var producto = snapshot.data;
+              codigoCtrl.text = producto['cod_evento'];
+              nom_eventoCtrl.text = producto['nom_evento'];
+              precio_entradaCtrl.text = producto['precio_entrada'].toString();
+              estado_eventoCtrl.text = producto['estado_evento'].toString();
 
-                  return Form(
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Text('Editando producto:' + widget.cod_evento),
-                        ),
-                        Expanded(
-                          child: ListView(
-                            children: [
-                              campoCodigo(),
-                              camponom_evento(),
-                              campoprecio_entrada(),
-                              campoestado_evento(),
-                              botonEditar(),
-                            ],
-                          ),
-                        ),
-                      ],
+              return Form(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Text('Editando producto:' + widget.cod_evento),
                     ),
-                  );
-                }),
-          ),
-        ],
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          campoCodigo(),
+                          mostrarError(errCodigo),
+                          camponom_evento(),
+                          mostrarError(errNombre),
+                          campoprecio_entrada(),
+                          mostrarError(errPrecio),
+                          campoestado_evento(),
+                          botonEditar(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
+    );
+  }
+
+  Container mostrarError(String error) {
+    return Container(
+      width: double.infinity,
+      child: Text(
+        error,
+        style: TextStyle(color: Colors.red),
       ),
     );
   }
 
   TextFormField campoCodigo() {
     return TextFormField(
-      
       controller: codigoCtrl,
       decoration: InputDecoration(
-        
-        
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.purple)
-        ),
         labelText: 'Código',
-        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
-        
-        
-        
       ),
-      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -115,13 +95,8 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: nom_eventoCtrl,
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.purple)
-        ),
         labelText: 'nom_evento',
-        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
       ),
-      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -129,13 +104,8 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: precio_entradaCtrl,
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.purple)
-        ),
         labelText: 'precio_entrada',
-        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
       ),
-      style: TextStyle(color: Colors.white),
       keyboardType: TextInputType.number,
     );
   }
@@ -144,13 +114,8 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: estado_eventoCtrl,
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.purple)
-        ),
         labelText: 'estado_evento',
-        labelStyle: TextStyle(color: Colors.white,fontSize: 20),
       ),
-      style: TextStyle(color: Colors.white),
       keyboardType: TextInputType.number,
     );
   }
@@ -161,7 +126,7 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.purple,
+          primary: Colors.amber,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -179,8 +144,23 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
           int estado_evento = int.tryParse(estado_eventoCtrl.text.trim()) ?? 0;
 
           //enviar por post al api
-          await EventosProvider().editar(widget.cod_evento, cod_evento,
-              nom_evento, precio_entrada, estado_evento);
+
+          var respuesta = await EventosProvider().editar(widget.cod_evento,
+              cod_evento, nom_evento, precio_entrada, estado_evento);
+
+          if (respuesta['message'] != null) {
+            var errores = respuesta['errors'];
+            errCodigo =
+                errores['cod_evento'] != null ? errores['cod_evento'][0] : '';
+            errNombre =
+                errores['nom_evento'] != null ? errores['nom_evento'][0] : '';
+            errPrecio = errores['precio_entrada'] != null
+                ? errores['precio_entrada'][0]
+                : '';
+
+            setState(() {});
+            return;
+          }
 
           //redireccionar a pagina que lista productos
           Navigator.pop(context);
