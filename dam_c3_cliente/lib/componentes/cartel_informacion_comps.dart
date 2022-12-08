@@ -21,7 +21,7 @@ class _CartelInformacionCompsState extends State<CartelInformacionComps> {
           this.cabecera(),
           this.Info(),
           this.botonera(),
-          this.botonera2(),
+          
   
       ],
     );
