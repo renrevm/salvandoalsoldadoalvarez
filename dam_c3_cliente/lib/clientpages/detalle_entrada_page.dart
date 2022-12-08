@@ -7,8 +7,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../pages/menu_page.dart';
 
 class DetalleEntradaPage extends StatefulWidget {
-  const DetalleEntradaPage({key});
-
+  //const DetalleEntradaPage({key});
+  int entrada;
+  DetalleEntradaPage(this.entrada);
   @override
   State<DetalleEntradaPage> createState() => _DetalleEntradaPageState();
 }
@@ -34,7 +35,8 @@ class _DetalleEntradaPageState extends State<DetalleEntradaPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: QrImage(
-                    data: 'http://www.usmentradas.cl/',
+                    data: 'http://www.usmentradas.cl/' +
+                        widget.entrada.toString(),
                     version: QrVersions.auto,
                     size: 320,
                     gapless: false,

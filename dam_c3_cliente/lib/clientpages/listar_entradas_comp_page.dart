@@ -3,8 +3,6 @@
 import 'package:dam_c3_cliente/clientpages/detalle_entrada_page.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/menu_page.dart';
-
 // ignore: must_be_immutable
 class ListarEntradasCompPage extends StatefulWidget {
   const ListarEntradasCompPage({key});
@@ -40,7 +38,7 @@ class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetalleEntradaPage())),
+                          builder: (context) => DetalleEntradaPage(2))),
                 },
               ),
             ],
