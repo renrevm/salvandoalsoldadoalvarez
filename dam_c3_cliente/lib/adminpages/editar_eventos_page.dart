@@ -27,47 +27,69 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
       appBar: AppBar(
         title: Text('Editar Producto'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FutureBuilder(
-            future: EventosProvider().getEvento(widget.cod_evento),
-            builder: (context, AsyncSnapshot snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+      body: Stack(
+        children: <Widget>[
+          Image.network("https://images.alphacoders.com/971/971255.jpg",
+              height: 750.0,
+              fit: BoxFit.cover,
+              ),
+              Container(
+                width: double.infinity,
+              height: 750.0,      
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.center,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Colors.black26,
+                    Colors.black,
+                  ]
+                )
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FutureBuilder(
+                future: EventosProvider().getEvento(widget.cod_evento),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
 
-              var producto = snapshot.data;
-              codigoCtrl.text = producto['cod_evento'];
-              nom_eventoCtrl.text = producto['nom_evento'];
-              precio_entradaCtrl.text = producto['precio_entrada'].toString();
-              estado_eventoCtrl.text = producto['estado_evento'].toString();
+                  var producto = snapshot.data;
+                  codigoCtrl.text = producto['cod_evento'];
+                  nom_eventoCtrl.text = producto['nom_evento'];
+                  precio_entradaCtrl.text = producto['precio_entrada'].toString();
+                  estado_eventoCtrl.text = producto['estado_evento'].toString();
 
-              return Form(
-                child: Column(
-                  children: [
-                    Container(
-                      child: Text('Editando producto:' + widget.cod_evento),
+                  return Form(
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text('Editando producto:' + widget.cod_evento),
+                        ),
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              campoCodigo(),
+                              mostrarError(errCodigo),
+                              camponom_evento(),
+                              mostrarError(errNombre),
+                              campoprecio_entrada(),
+                              mostrarError(errPrecio),
+                              campoestado_evento(),
+                              botonEditar(),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: ListView(
-                        children: [
-                          campoCodigo(),
-                          mostrarError(errCodigo),
-                          camponom_evento(),
-                          mostrarError(errNombre),
-                          campoprecio_entrada(),
-                          mostrarError(errPrecio),
-                          campoestado_evento(),
-                          botonEditar(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }),
+                  );
+                }),
+          ),
+        ],
       ),
     );
   }
@@ -86,8 +108,12 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: codigoCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'Código',
       ),
+      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -95,8 +121,12 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: nom_eventoCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'nom_evento',
       ),
+      style: TextStyle(color: Colors.white),
     );
   }
 
@@ -104,8 +134,12 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: precio_entradaCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'precio_entrada',
       ),
+      style: TextStyle(color: Colors.white),
       keyboardType: TextInputType.number,
     );
   }
@@ -114,8 +148,12 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
     return TextFormField(
       controller: estado_eventoCtrl,
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.purple)
+        ),
         labelText: 'estado_evento',
       ),
+      style: TextStyle(color: Colors.white),
       keyboardType: TextInputType.number,
     );
   }

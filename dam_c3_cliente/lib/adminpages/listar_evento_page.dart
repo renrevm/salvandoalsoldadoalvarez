@@ -8,14 +8,14 @@ import '../providers/eventos_provider.dart';
 import 'agregar_eventos_page.dart';
 import 'editar_eventos_page.dart';
 
-class EventosListarPage extends StatefulWidget {
-  const EventosListarPage({Key? key}) : super(key: key);
+class ListarEventosPage extends StatefulWidget {
+  const ListarEventosPage({Key? key}) : super(key: key);
 
   @override
-  State<EventosListarPage> createState() => _EventosListarPageState();
+  State<ListarEventosPage> createState() => _ListarEventosPageState();
 }
 
-class _EventosListarPageState extends State<EventosListarPage> {
+class _ListarEventosPageState extends State<ListarEventosPage> {
   final fPrecio =
       NumberFormat.currency(decimalDigits: 0, locale: 'es-CL', symbol: '');
 
