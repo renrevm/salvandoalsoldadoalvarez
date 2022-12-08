@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventosRequest;
+
 
 class EventosController extends Controller
 {
@@ -23,7 +25,7 @@ class EventosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventosRequest $request)
     {
         $evento = new Evento();
         $evento->cod_evento = $request->cod_evento;
@@ -52,7 +54,7 @@ class EventosController extends Controller
      * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evento $evento)
+    public function update(EventosRequest $request, Evento $evento)
     {
         $evento->cod_evento = $request->cod_evento;
         $evento->nom_evento = $request->nom_evento;
