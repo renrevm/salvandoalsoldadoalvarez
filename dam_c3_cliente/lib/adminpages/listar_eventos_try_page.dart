@@ -1,12 +1,11 @@
-// ignore_for_file: deprecated_member_use
 
-import 'package:dam_c3_cliente/adminpages/agregar_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/borrar_eventos_page.dart';
-import 'package:dam_c3_cliente/adminpages/editar_eventos_page.dart';
 import 'package:flutter/material.dart';
-import '../widgets/muestra.dart';
 
-// ignore: must_be_immutable
+import '../componentes/cartel_principal_comps.dart';
+import '../componentes/item_imagen_comps.dart';
+import '../componentes/item_redondeado_comps.dart';
+import 'agregar_eventos_page.dart';
+
 class ListarEventosTryPage extends StatefulWidget {
   const ListarEventosTryPage({key});
 
@@ -15,71 +14,87 @@ class ListarEventosTryPage extends StatefulWidget {
 }
 
 class _ListarEventosTryPageState extends State<ListarEventosTryPage> {
+  //int paginaSel = 0;
+  //final paginas = [AgregarEventosPage(),EditarEventosPage(), BorrarEventosPage()];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                "https://i.pinimg.com/736x/87/bd/99/87bd99186c153f0edbb2f69cc6cb773b.jpg",
-              ),
-              fit: BoxFit.cover),
-        ),
-        child: GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: 4 / 3, //relacion de aspecto
-          children: <Widget>[
-            muestra(
-              child: ElevatedButton(
-                child: Text('Agregar Evento'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AgregarEventosPage()));
-                },
-                //color: Colors.blueAccent.shade200,
-                //textColor: Colors.white,
-              ),
-              text:
-                  'Agregar un evento nuevo, con  sus respectivas entradas a la venta.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text('Editar Evento'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EditarEventosPage()));
-                },
-                //color: Colors.blueAccent.shade200,
-                //textColor: Colors.white,
-              ),
-              text: 'Edita un evento que se encuentre en estado vigente.',
-            ),
-            muestra(
-              child: ElevatedButton(
-                child: Text(
-                  'Borrar Evento',
-                  textAlign: TextAlign.center,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BorrarEventosPage()));
-                },
-                //color: Colors.blueAccent.shade200,
-                //textColor: Colors.white,
-              ),
-              text:
-                  'Elimina un evento y sus entradas disponibles para la venta del listado.',
-            ),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: ListView(
+        
+        children: <Widget>[
+          CartelPrincipalComps(),
+        ],
       ),
+      //bottomNavigationBar: this.navInferior(),
+    );
+  }
+
+  // BottomNavigationBar navInferior(){
+  //   return BottomNavigationBar(
+      
+  //     currentIndex: paginaSel,
+  //     onTap: (index) {
+  //         //print('Tap: ' + index.toString()); //Imprime en la consola el index
+  //         setState(() {
+  //           paginaSel = index;
+  //         });
+  //       },
+  //     backgroundColor: Colors.black,
+  //     type: BottomNavigationBarType.fixed,
+  //     selectedItemColor: Color.fromARGB(255, 202, 71, 209),
+  //     unselectedItemColor: Colors.white,
+  //     iconSize: 25.0,
+  //     selectedFontSize: 14.0,
+  //     unselectedFontSize: 12.0,
+  //     items: <BottomNavigationBarItem>[
+  //       BottomNavigationBarItem(
+  //         icon: Icon(Icons.shop),
+  //         label: ('Noticias')         
+  //       ),
+  //         BottomNavigationBarItem(
+  //         icon: Icon(Icons.list),
+  //         label: ('Eventos')         
+  //       ),
+  //         BottomNavigationBarItem(
+  //         icon: Icon(Icons.newspaper),
+  //         label: ('Entradas')         
+  //       ),
+  //     ],
+  //   );
+
+  
+
+  Widget listahorizontal(String titulo, Widget item, int cantidad){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:6.0,vertical: 10.0),
+          child: Text(
+            titulo,
+            style: TextStyle(color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          
+          ),),
+        ),
+
+          Container(
+            height: 110.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: cantidad,
+              
+              itemBuilder: (context, index) {
+                return item;
+              } ,
+            ),
+          ),
+
+      ],
+
     );
   }
 }
