@@ -6,6 +6,7 @@ import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../clientpages/mostrar_noticia.dart';
 import '../services/firestore_service.dart';
 
 // ignore: must_be_immutable
@@ -84,12 +85,20 @@ class _PortadaNoticiasPageState extends State<PortadaNoticiasPage> {
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Times New Roman'),
                           ),
-                          subtitle: Text(
+                          /*subtitle: Text(
                             noticias['descripcion'],
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 13, fontFamily: 'system-ui'),
-                          ),
+                          ),*/
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MostrarNoticia(
+                                        noticias['titulo'],
+                                        noticias['descripcion'])));
+                          },
                         ),
                       ),
                     );
