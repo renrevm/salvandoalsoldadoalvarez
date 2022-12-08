@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dam_c3_cliente">
    <application
-        android:label="dam_c3_cliente"
+        android:label="PuntoTicketec Master"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
