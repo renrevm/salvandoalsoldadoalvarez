@@ -4,8 +4,7 @@ import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../pages/menu_page.dart';
-
+// ignore: must_be_immutable
 class DetalleEntradaPage extends StatefulWidget {
   //const DetalleEntradaPage({key});
   int entrada;
