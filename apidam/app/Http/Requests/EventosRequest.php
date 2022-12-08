@@ -24,7 +24,7 @@ class EventosRequest extends FormRequest
     public function rules()
     {
         return [
-            'cod_evento'=> 'required',
+            'cod_evento'=> 'required|min:3|unique:eventos,cod_evento',
             'nom_evento'=> 'required',
             'precio_entrada'=> 'required|numeric|gte:1',
             //'estado_evento'=> 'required',
@@ -33,6 +33,8 @@ class EventosRequest extends FormRequest
     public function messages(){
         return [
                 'cod_evento.required'=>'Indique el código del evento.',
+                'cod_evento.min'=>'El código de evento debe tener al menos 3 caracteres.',
+                'cod_evento.unique'=>'El código del evento está repetido, intente otro.',
                 'nom_evento.required'=>'Indique el nombre del evento.',
                 'precio_entrada.required'=>'Indique el precio del evento.',
                 'precio_entrada.numeric'=>'Precio debe ser un numero.',

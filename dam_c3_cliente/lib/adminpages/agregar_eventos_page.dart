@@ -1,10 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
-//import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
 
-import '../componentes/cartel_agregar_comps.dart';
 import '../constant.dart';
+import '../providers/eventos_provider.dart';
 
 class AgregarEventosPage extends StatefulWidget {
   const AgregarEventosPage({key});
@@ -14,87 +13,150 @@ class AgregarEventosPage extends StatefulWidget {
 }
 
 class _AgregarEventosPageState extends State<AgregarEventosPage> {
-  //int paginaSel = 0;
-  //final paginas = [AgregarEventosPage(),EditarEventosPage(), BorrarEventosPage()];
+  TextEditingController codigoCtrl = TextEditingController();
+  TextEditingController nombreCtrl = TextEditingController();
+  TextEditingController precioCtrl = TextEditingController();
+  TextEditingController estadoCtrl = TextEditingController();
+
+  String errCodigo = '';
+  String errNombre = '';
+  String errPrecio = '';
+  String errEstadp = '';
+
+  int categoriaSeleccionada = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: ListView(
-        
-        children: <Widget>[
-          CartelAgregarComps(),
-        ],
+        appBar: AppBar(
+          title: Text(
+            'Agregar Evento',
+            style: kTituloAppbar,
+          ),
+          backgroundColor: Color(kPrimaryColor),
+          shadowColor: Color(kPrimaryColor),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                  "https://i.pinimg.com/originals/2e/bc/cd/2ebccd9056ed62454033e76aab235d5f.png",
+                ),
+                fit: BoxFit.cover),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Form(
+              child: ListView(
+                children: [
+                  campoCodigo(),
+                  mostrarError(errCodigo),
+                  campoNombre(),
+                  mostrarError(errNombre),
+                  campoPrecio(),
+                  mostrarError(errPrecio),
+                  // campoEstado(),
+                  // mostrarError(errStock),
+                  botonAgregar(),
+                ],
+              ),
+            ),
+          ),
+        ));
+  }
+
+  Container mostrarError(String error) {
+    return Container(
+      width: double.infinity,
+      child: Text(
+        error,
+        style: TextStyle(color: Colors.red),
       ),
-      //bottomNavigationBar: this.navInferior(),
     );
   }
 
-  // BottomNavigationBar navInferior(){
-  //   return BottomNavigationBar(
-      
-  //     currentIndex: paginaSel,
-  //     onTap: (index) {
-  //         //print('Tap: ' + index.toString()); //Imprime en la consola el index
-  //         setState(() {
-  //           paginaSel = index;
-  //         });
-  //       },
-  //     backgroundColor: Colors.black,
-  //     type: BottomNavigationBarType.fixed,
-  //     selectedItemColor: Color.fromARGB(255, 202, 71, 209),
-  //     unselectedItemColor: Colors.white,
-  //     iconSize: 25.0,
-  //     selectedFontSize: 14.0,
-  //     unselectedFontSize: 12.0,
-  //     items: <BottomNavigationBarItem>[
-  //       BottomNavigationBarItem(
-  //         icon: Icon(Icons.shop),
-  //         label: ('Noticias')         
-  //       ),
-  //         BottomNavigationBarItem(
-  //         icon: Icon(Icons.list),
-  //         label: ('Eventos')         
-  //       ),
-  //         BottomNavigationBarItem(
-  //         icon: Icon(Icons.newspaper),
-  //         label: ('Entradas')         
-  //       ),
-  //     ],
-  //   );
+  TextFormField campoCodigo() {
+    return TextFormField(
+      controller: codigoCtrl,
+      decoration: InputDecoration(
+        labelText: 'Código de evento.',
+      ),
+    );
+  }
 
-  
+  TextFormField campoNombre() {
+    return TextFormField(
+      controller: nombreCtrl,
+      decoration: InputDecoration(
+        labelText: 'Nombre de evento.',
+      ),
+    );
+  }
 
-  Widget listahorizontal(String titulo, Widget item, int cantidad){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  TextFormField campoPrecio() {
+    return TextFormField(
+      controller: precioCtrl,
+      decoration: InputDecoration(
+        labelText: 'Precio de entrada.',
+      ),
+      keyboardType: TextInputType.number,
+    );
+  }
 
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal:6.0,vertical: 10.0),
-          child: Text(
-            titulo,
-            style: TextStyle(color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          
-          ),),
+  TextFormField campoEstado() {
+    return TextFormField(
+      controller: estadoCtrl,
+      decoration: InputDecoration(
+        labelText: 'Estado del evento.',
+      ),
+      keyboardType: TextInputType.number,
+    );
+  }
+
+  Container botonAgregar() {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.purple,
         ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.add),
+            Text('Agregar Evento'),
+          ],
+        ),
+        onPressed: () async {
+          //caputar datos del form
+          String cod_evento = codigoCtrl.text.trim();
+          String nom_evento = nombreCtrl.text.trim();
+          int precio_entrada = int.tryParse(precioCtrl.text.trim()) ?? 0;
+          int estado_evento = int.tryParse(estadoCtrl.text.trim()) ?? 0;
 
-          Container(
-            height: 110.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: cantidad,
-              
-              itemBuilder: (context, index) {
-                return item;
-              } ,
-            ),
-          ),
+          //enviar por post al api
+          var respuesta = await EventosProvider()
+              .agregar(cod_evento, nom_evento, precio_entrada, estado_evento);
 
-      ],
+          //manejar errores
+          if (respuesta['message'] != null) {
+            var errores = respuesta['errors'];
+            errCodigo =
+                errores['cod_evento'] != null ? errores['cod_evento'][0] : '';
+            errNombre =
+                errores['nom_evento'] != null ? errores['nom_evento'][0] : '';
+            errPrecio = errores['precio_entrada'] != null
+                ? errores['precio_entrada'][0]
+                : '';
 
+            setState(() {});
+            return;
+          }
+
+          //redireccionar a pagina que lista
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 }
