@@ -49,14 +49,8 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
                 ),
                 onPressed: () => {},
               ),
-              ElevatedButton(
-                child: Text('Volver al menu anterior'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ElevatedButton(
-                child: Text('Volver al menu anterior'),
+               ElevatedButton(
+                child: Text('Cambiar estado'),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -64,6 +58,13 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
                           builder: (context) => CambiarEstadoEventosPage()));
                 },
               ),
+              ElevatedButton(
+                child: Text('Volver al menu anterior'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+             
             ],
           ),
         ),
