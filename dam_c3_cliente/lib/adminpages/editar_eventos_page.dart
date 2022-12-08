@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:dam_c3_cliente/adminpages/cambiar_estado_eventos_page.dart';
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
@@ -52,6 +53,15 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
                 child: Text('Volver al menu anterior'),
                 onPressed: () {
                   Navigator.pop(context);
+                },
+              ),
+              ElevatedButton(
+                child: Text('Volver al menu anterior'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CambiarEstadoEventosPage()));
                 },
               ),
             ],
