@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 
 import '../componentes/cartel_borrar_comps.dart';
-import '../constant.dart';
 
 class BorrarEventosPage extends StatefulWidget {
   const BorrarEventosPage({key});
@@ -21,7 +20,6 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: ListView(
-        
         children: <Widget>[
           CartelBorrarComps(),
         ],
@@ -32,7 +30,7 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
 
   // BottomNavigationBar navInferior(){
   //   return BottomNavigationBar(
-      
+
   //     currentIndex: paginaSel,
   //     onTap: (index) {
   //         //print('Tap: ' + index.toString()); //Imprime en la consola el index
@@ -50,51 +48,45 @@ class _BorrarEventosPageState extends State<BorrarEventosPage> {
   //     items: <BottomNavigationBarItem>[
   //       BottomNavigationBarItem(
   //         icon: Icon(Icons.shop),
-  //         label: ('Noticias')         
+  //         label: ('Noticias')
   //       ),
   //         BottomNavigationBarItem(
   //         icon: Icon(Icons.list),
-  //         label: ('Eventos')         
+  //         label: ('Eventos')
   //       ),
   //         BottomNavigationBarItem(
   //         icon: Icon(Icons.newspaper),
-  //         label: ('Entradas')         
+  //         label: ('Entradas')
   //       ),
   //     ],
   //   );
 
-  
-
-  Widget listahorizontal(String titulo, Widget item, int cantidad){
+  Widget listahorizontal(String titulo, Widget item, int cantidad) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal:6.0,vertical: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 10.0),
           child: Text(
             titulo,
-            style: TextStyle(color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          
-          ),),
-        ),
-
-          Container(
-            height: 110.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: cantidad,
-              
-              itemBuilder: (context, index) {
-                return item;
-              } ,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
             ),
           ),
-
+        ),
+        Container(
+          height: 110.0,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: cantidad,
+            itemBuilder: (context, index) {
+              return item;
+            },
+          ),
+        ),
       ],
-
     );
   }
 }

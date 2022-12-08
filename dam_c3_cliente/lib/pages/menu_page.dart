@@ -1,4 +1,3 @@
-import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/pages/menu_perfil_page.dart';
 import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../services/authentificator.dart';
 import 'login_page.dart';
 
+// ignore: must_be_immutable
 class MenuPage extends StatefulWidget {
   //const MenuPage({key});
   String nombre, correo, url;

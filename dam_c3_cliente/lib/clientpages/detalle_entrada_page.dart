@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import '../pages/menu_page.dart';
-
 class DetalleEntradaPage extends StatefulWidget {
   const DetalleEntradaPage({key});
 
