@@ -20,9 +20,6 @@ class _EventosListarPageState extends State<EventosListarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Eventos'),
-      ),
       body: FutureBuilder(
         future: EventosProvider().getEventos(),
         builder: (context, AsyncSnapshot snapshot) {
@@ -45,7 +42,13 @@ class _EventosListarPageState extends State<EventosListarPage> {
                   motion: ScrollMotion(),
                   children: [
                     SlidableAction(
-                      onPressed: (context) {},
+                      onPressed: (context) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    EditarEventosPage(evento['cod_evento'])));
+                      },
                       backgroundColor: Colors.purple,
                       icon: Icons.edit,
                       label: 'Editar',

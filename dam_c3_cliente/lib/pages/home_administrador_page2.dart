@@ -3,6 +3,7 @@ import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../adminpages/informacion_eventos_page.dart';
+import '../adminpages/listar_evento_page.dart';
 import '../adminpages/listar_eventos_try_page.dart';
 import 'menu_page.dart';
 
@@ -19,7 +20,7 @@ class HomeAdministradorPage2 extends StatefulWidget {
 class _HomeAdministradorPage2State extends State<HomeAdministradorPage2> {
   int paginaSel = 1;
   final paginas = [
-    ListarEventosTryPage(),
+    EventosListarPage(),
     PortadaNoticiasPage(),
     //CambiarEstadoEventosPage(),
     InformacionEventosPage()
