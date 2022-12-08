@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:dam_c3_cliente/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 import '../pages/menu_page.dart';
 
@@ -25,8 +27,20 @@ class _DetalleEntradaPageState extends State<DetalleEntradaPage> {
         ),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Container(
+                color: Color(kAccentColor1),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: QrImage(
+                    data: 'http://www.usmentradas.cl/',
+                    version: QrVersions.auto,
+                    size: 320,
+                    gapless: false,
+                  ),
+                ),
+              ),
               ElevatedButton(
                 style: ButtonStyle(
                   foregroundColor: getColor(Colors.white, Colors.yellow),
