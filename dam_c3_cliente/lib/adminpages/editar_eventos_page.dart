@@ -1,101 +1,138 @@
-// ignore_for_file: deprecated_member_use
-
-//import 'package:dam_c3_cliente/adminpages/cambiar_estado_eventos_page.dart';
 import 'package:flutter/material.dart';
-
-import '../componentes/cartel_editar_comps.dart';
-import '../constant.dart';
-import 'cambiar_estado_eventos_page.dart';
+import 'package:proyectoclon/providers/productos_provider.dart';
 
 class EditarEventosPage extends StatefulWidget {
-  const EditarEventosPage({key});
+  String cod_evento;
+
+  EditarEventosPage(this.cod_evento, {Key? key}) : super(key: key);
 
   @override
   State<EditarEventosPage> createState() => _EditarEventosPageState();
 }
 
 class _EditarEventosPageState extends State<EditarEventosPage> {
-  //int paginaSel = 0;
-  //final paginas = [EditarEventosPage(),EditarEventosPage(), BorrarEventosPage()];
+  TextEditingController codigoCtrl = TextEditingController();
+  TextEditingController nom_eventoCtrl = TextEditingController();
+  TextEditingController precio_entradaCtrl = TextEditingController();
+  TextEditingController estado_eventoCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: ListView(
-        
-        children: <Widget>[
-          CartelEditarComps(),
-        ],
+      appBar: AppBar(
+        title: Text('Editar Producto'),
       ),
-      //bottomNavigationBar: this.navInferior(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FutureBuilder(
+            future: EventosProvider().getEvento(widget.cod_evento),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              var producto = snapshot.data;
+              codigoCtrl.text = producto['cod_evento'];
+              nom_eventoCtrl.text = producto['nom_evento'];
+              precio_entradaCtrl.text = producto['precio_entrada'].toString();
+              estado_eventoCtrl.text = producto['estado_evento'].toString();
+
+              return Form(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Text('Editando producto:' + widget.cod_evento),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          campoCodigo(),
+                          camponom_evento(),
+                          campoprecio_entrada(),
+                          campoestado_evento(),
+                          botonEditar(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
     );
   }
 
-  // BottomNavigationBar navInferior(){
-  //   return BottomNavigationBar(
-      
-  //     currentIndex: paginaSel,
-  //     onTap: (index) {
-  //         //print('Tap: ' + index.toString()); //Imprime en la consola el index
-  //         setState(() {
-  //           paginaSel = index;
-  //         });
-  //       },
-  //     backgroundColor: Colors.black,
-  //     type: BottomNavigationBarType.fixed,
-  //     selectedItemColor: Color.fromARGB(255, 202, 71, 209),
-  //     unselectedItemColor: Colors.white,
-  //     iconSize: 25.0,
-  //     selectedFontSize: 14.0,
-  //     unselectedFontSize: 12.0,
-  //     items: <BottomNavigationBarItem>[
-  //       BottomNavigationBarItem(
-  //         icon: Icon(Icons.shop),
-  //         label: ('Noticias')         
-  //       ),
-  //         BottomNavigationBarItem(
-  //         icon: Icon(Icons.list),
-  //         label: ('Eventos')         
-  //       ),
-  //         BottomNavigationBarItem(
-  //         icon: Icon(Icons.newspaper),
-  //         label: ('Entradas')         
-  //       ),
-  //     ],
-  //   );
+  TextFormField campoCodigo() {
+    return TextFormField(
+      controller: codigoCtrl,
+      decoration: InputDecoration(
+        labelText: 'Código',
+      ),
+    );
+  }
 
-  
+  TextFormField camponom_evento() {
+    return TextFormField(
+      controller: nom_eventoCtrl,
+      decoration: InputDecoration(
+        labelText: 'nom_evento',
+      ),
+    );
+  }
 
-  Widget listahorizontal(String titulo, Widget item, int cantidad){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  TextFormField campoprecio_entrada() {
+    return TextFormField(
+      controller: precio_entradaCtrl,
+      decoration: InputDecoration(
+        labelText: 'precio_entrada',
+      ),
+      keyboardType: TextInputType.number,
+    );
+  }
 
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal:6.0,vertical: 10.0),
-          child: Text(
-            titulo,
-            style: TextStyle(color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          
-          ),),
+  TextFormField campoestado_evento() {
+    return TextFormField(
+      controller: estado_eventoCtrl,
+      decoration: InputDecoration(
+        labelText: 'estado_evento',
+      ),
+      keyboardType: TextInputType.number,
+    );
+  }
+
+  Container botonEditar() {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.amber,
         ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.edit),
+            Text('Editar Producto'),
+          ],
+        ),
+        onPressed: () async {
+          //caputar datos del form
+          String cod_evento = codigoCtrl.text.trim();
+          String nom_evento = nom_eventoCtrl.text.trim();
+          int precio_entrada =
+              int.tryParse(precio_entradaCtrl.text.trim()) ?? 0;
+          int estado_evento = int.tryParse(estado_eventoCtrl.text.trim()) ?? 0;
 
-          Container(
-            height: 110.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: cantidad,
-              
-              itemBuilder: (context, index) {
-                return item;
-              } ,
-            ),
-          ),
+          //enviar por post al api
+          await EventosProvider().editar(widget.cod_evento, cod_evento,
+              nom_evento, precio_entrada, estado_evento);
 
-      ],
-
+          //redireccionar a pagina que lista productos
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 }

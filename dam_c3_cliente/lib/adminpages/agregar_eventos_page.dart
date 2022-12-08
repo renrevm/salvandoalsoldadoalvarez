@@ -1,9 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-
+import 'package:proyectoclon/providers/productos_provider.dart';
 import '../constant.dart';
-import '../providers/eventos_provider.dart';
 
 class AgregarEventosPage extends StatefulWidget {
   const AgregarEventosPage({key});
@@ -23,7 +22,6 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
   String errPrecio = '';
   String errEstadp = '';
 
-  int categoriaSeleccionada = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
