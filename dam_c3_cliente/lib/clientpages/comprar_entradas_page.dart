@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../constant.dart';
 import '../providers/eventos_provider.dart';
+import '../providers/ventas_provider.dart';
 import '../widgets/datos_usuario.dart';
 
 class ComprarEntradasPage extends StatefulWidget {
@@ -77,8 +78,15 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50.0)))),
                       onPressed: () {
-                        //
+                        //Comprar
                         print(correo);
+                        confirmDialog(context, evento['nom_evento'])
+                            .then((confirma) {
+                          if (confirma) {
+                            VentasProvider().agregarVenta(evento['cod_evento'],
+                                correo, evento['precio_entrada']);
+                          }
+                        });
                       },
                       child: Text('Comprar'),
                     ),
@@ -89,6 +97,34 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<dynamic> confirmDialog(BuildContext context, String evento) {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Confirmación compra'),
+          content: Text('¿Confirma comprar entrada para el evento $evento?'),
+          actions: [
+            TextButton(
+              child: Text(
+                'CONFIRMAR',
+                style: TextStyle(color: Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(primary: Colors.green),
+              onPressed: () => Navigator.pop(context, true),
+            ),
+            ElevatedButton(
+              child: Text('CANCELAR'),
+              style: ElevatedButton.styleFrom(primary: Colors.red),
+              onPressed: () => Navigator.pop(context, false),
+            ),
+          ],
+        );
+      },
     );
   }
 }
