@@ -11,6 +11,7 @@ import 'menu_page.dart';
 class HomeClientPage2 extends StatefulWidget {
   String nombre, correo, url;
   HomeClientPage2(this.nombre, this.correo, this.url);
+
   @override
   State<HomeClientPage2> createState() => _HomeClientPage2State();
 }

@@ -1,5 +1,6 @@
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/services/authentificator.dart';
+import 'package:dam_c3_cliente/services/datos_usuario.dart';
 import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -147,6 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                       print(user?.photoURL);
                       String nombre = user?.displayName ?? '';
                       String correo = user?.email ?? '';
+                      DatosUsuario(correo);
                       String url = user?.photoURL ??
                           'https://i.pinimg.com/originals/3e/44/2e/3e442e5eb7f03dbd40a71b70531f4230.jpg';
                       if (user?.email == 'puntoticketecmaster@gmail.com') {

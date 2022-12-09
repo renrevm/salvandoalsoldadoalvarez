@@ -1,15 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import '../constant.dart';
 import '../providers/eventos_provider.dart';
-
 import 'detalle_compra_page.dart';
-import 'detalle_entrada_page.dart';
+import 'package:dam_c3_cliente/services/datos_usuario.dart';
 
 class ComprarEntradasPage extends StatefulWidget {
   const ComprarEntradasPage({key});
@@ -21,6 +18,9 @@ class ComprarEntradasPage extends StatefulWidget {
 class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
   final fPrecio =
       NumberFormat.currency(decimalDigits: 0, locale: 'es-CL', symbol: '');
+  //correo cliente
+  final correo = DatosUsuario.getCorreo1().toString().trim();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +61,7 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
                   var evento = snapshot.data[index];
                   return ListTile(
                     leading: Icon(MdiIcons.ticketConfirmation),
+                    //leading: Text(correo),
                     iconColor: Color(kSecundaryColor),
                     title: Text(
                       '${evento['nom_evento']}',
@@ -78,6 +79,7 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
                                   BorderRadius.all(Radius.circular(50.0)))),
                       onPressed: () {
                         //
+                        print(correo);
                       },
                       child: Text('Comprar'),
                     ),
