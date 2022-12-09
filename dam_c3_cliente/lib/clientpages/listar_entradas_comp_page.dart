@@ -2,8 +2,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 
+import '../constant.dart';
 import '../widgets/get_color.dart';
 import 'detalle_entrada_page.dart';
 
@@ -22,13 +24,13 @@ class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
       body: Container(
           child: Stack(
             children: <Widget>[
-              Image.network("https://w0.peakpx.com/wallpaper/697/90/HD-wallpaper-astronaut-falling-in-black-hole.jpg",
-                height: 680.0,
+              Image.network("https://wallpapers.com/images/hd/funny-astronaut-sci-fi-aesthetic-rwcwj2xhtbkpp6kd.jpg",
+                height: 800.0,
                 fit: BoxFit.cover,
                 ),
               Container(
                 width: double.infinity,
-                height: 680.0,      
+                height: 800.0,      
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.center,
@@ -39,18 +41,19 @@ class _ListarEntradasCompPageState extends State<ListarEntradasCompPage> {
                     ]
                   )
                 ),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                       
-                        ],
-                      ),
+                child: ListTile(
+                    leading: Icon(MdiIcons.ticketConfirmation),
+                    iconColor: Color(kSecundaryColor),
+                    title: Text(
+                      'hola',
+                      style: TextStyle(fontSize: 20,color: Colors.white),
                     ),
-                  ],
-                ),
+                    textColor: Colors.white,
+                    subtitle: Text(
+                      '\$' + ('5000'),
+                    ),
+                    trailing: Text('Comprada',style: TextStyle(color: Colors.white,fontSize: 22),),
+              ),
               ),
             ],
           ),
