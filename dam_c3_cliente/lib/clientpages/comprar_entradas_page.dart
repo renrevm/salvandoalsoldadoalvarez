@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../constant.dart';
 import '../providers/eventos_provider.dart';
+import '../widgets/datos_usuario.dart';
 import 'detalle_compra_page.dart';
-import 'package:dam_c3_cliente/services/datos_usuario.dart';
 
 class ComprarEntradasPage extends StatefulWidget {
   const ComprarEntradasPage({key});
@@ -19,7 +19,7 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
   final fPrecio =
       NumberFormat.currency(decimalDigits: 0, locale: 'es-CL', symbol: '');
   //correo cliente
-  final correo = DatosUsuario.getCorreo1().toString().trim();
+  final correo = DatosUsuario.getCorreo().toString().trim();
 
   @override
   Widget build(BuildContext context) {

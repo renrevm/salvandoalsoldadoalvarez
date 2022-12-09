@@ -1,6 +1,5 @@
 import 'package:dam_c3_cliente/constant.dart';
 import 'package:dam_c3_cliente/services/authentificator.dart';
-import 'package:dam_c3_cliente/services/datos_usuario.dart';
 import 'package:dam_c3_cliente/widgets/box_degrade.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../widgets/datos_usuario.dart';
 import 'home_administrador_page2.dart';
 import 'home_client_page2.dart';
 // cd a android y .\gradlew signingReport para encontrar huella digital sh1
@@ -148,9 +148,10 @@ class _LoginPageState extends State<LoginPage> {
                       print(user?.photoURL);
                       String nombre = user?.displayName ?? '';
                       String correo = user?.email ?? '';
-                      DatosUsuario(correo);
+
                       String url = user?.photoURL ??
                           'https://i.pinimg.com/originals/3e/44/2e/3e442e5eb7f03dbd40a71b70531f4230.jpg';
+                      DatosUsuario(nombre, correo, url);
                       if (user?.email == 'puntoticketecmaster@gmail.com') {
                         Navigator.push(
                             context,
