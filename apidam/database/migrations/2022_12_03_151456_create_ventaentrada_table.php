@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ventaentradas', function (Blueprint $table) {
-            $table->integer('id_venta')->primary();
+            $table->integer('id_venta')->autoIncrement();
             $table->string('codevento');
             $table->string('cod_cliente');
             $table->integer('total');
