@@ -28,7 +28,7 @@ class EventosRequest extends FormRequest
                     'cod_evento'=> 'required|min:3|unique:eventos,cod_evento',
                     'nom_evento'=> 'required',
                     'precio_entrada'=> 'required|numeric|gte:1',
-                    //'estado_evento'=> 'required',
+                 
             ];
     }
     public function messages(){
@@ -40,7 +40,7 @@ class EventosRequest extends FormRequest
                 'precio_entrada.required'=>'Indique el precio del evento.',
                 'precio_entrada.numeric'=>'Precio debe ser un numero.',
                 'precio_entrada.gte'=>'Precio no puede ser 0.',
-                'estado_evento.required'=>'Ingrese el estado del evento.',
+                
         ];
     }
 }

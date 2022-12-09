@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cod_evento',10)->primary();
             $table->string('nom_evento',50);
             $table->integer('precio_entrada');
-            $table->boolean('estado_evento');
+            $table->string('estado_evento');
 	        $table->softDeletes();
         });
     }
