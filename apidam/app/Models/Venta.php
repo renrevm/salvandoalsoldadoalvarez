@@ -13,6 +13,6 @@ class Venta extends Model
     
     protected $table = 'ventaentradas';
     protected $primaryKey = 'id_venta';
-    protected $keyType = 'unsignedInteger';
+    protected $keyType = 'integer';
 	public $timestamps = false;
 }

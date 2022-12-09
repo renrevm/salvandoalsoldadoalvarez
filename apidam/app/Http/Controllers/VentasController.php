@@ -14,7 +14,7 @@ class VentasController extends Controller
      */
     public function index()
     {
-        //
+        return Venta::all();
     }
 
     /**
@@ -25,7 +25,13 @@ class VentasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venta = new Venta();
+        $venta->id_venta = $request->id_venta;
+        $venta->codevento = $request->codevento;
+        $venta->cod_cliente = $request->cod_cliente;
+        $venta->total = $request->total;
+        $venta->save();
+            return $venta;
     }
 
     /**
@@ -36,7 +42,7 @@ class VentasController extends Controller
      */
     public function show(Venta $venta)
     {
-        //
+        return $venta;
     }
 
     /**
