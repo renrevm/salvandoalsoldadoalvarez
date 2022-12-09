@@ -8,14 +8,14 @@ import '../providers/eventos_provider.dart';
 import 'agregar_eventos_page.dart';
 import 'editar_eventos_page.dart';
 
-class EventosListarPage extends StatefulWidget {
-  const EventosListarPage({Key? key}) : super(key: key);
+class ListarEventosPage extends StatefulWidget {
+  const ListarEventosPage({Key? key}) : super(key: key);
 
   @override
-  State<EventosListarPage> createState() => _EventosListarPageState();
+  State<ListarEventosPage> createState() => _ListarEventosPageState();
 }
 
-class _EventosListarPageState extends State<EventosListarPage> {
+class _ListarEventosPageState extends State<ListarEventosPage> {
   final fPrecio =
       NumberFormat.currency(decimalDigits: 0, locale: 'es-CL', symbol: '');
 
@@ -59,23 +59,23 @@ class _EventosListarPageState extends State<EventosListarPage> {
                   var evento = snapshot.data[index];
                   return Slidable(
                     //action panes
-                    startActionPane: ActionPane(
-                      motion: ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditarEventosPage(
-                                        evento['cod_evento'])));
-                          },
-                          backgroundColor: Color(kPrimaryColor),
-                          icon: Icons.edit,
-                          label: 'Editar',
-                        ),
-                      ],
-                    ),
+                    // startActionPane: ActionPane(
+                    //   motion: ScrollMotion(),
+                    //   children: [
+                    //     // SlidableAction(
+                    //     //   onPressed: (context) {
+                    //     //     Navigator.push(
+                    //     //         context,
+                    //     //         MaterialPageRoute(
+                    //     //             builder: (context) => EditarEventosPage(
+                    //     //                 evento['cod_evento'])));
+                    //     //   },
+                    //     //   backgroundColor: Color(kPrimaryColor),
+                    //     //   icon: Icons.edit,
+                    //     //   label: 'Editar',
+                    //     // ),
+                    //   ],
+                    // ),
                     endActionPane: ActionPane(
                       motion: ScrollMotion(),
                       children: [
@@ -121,7 +121,7 @@ class _EventosListarPageState extends State<EventosListarPage> {
                           builder: (context) =>
                               EditarEventosPage(evento['cod_evento']),
                         );
-                        Navigator.push(context, route).then((valor) {
+                        Navigator.push(context, route).then((value) {
                           setState(() {});
                         });
                       },
