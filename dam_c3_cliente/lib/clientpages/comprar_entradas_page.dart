@@ -6,7 +6,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../constant.dart';
 import '../providers/eventos_provider.dart';
 import '../widgets/datos_usuario.dart';
-import 'detalle_compra_page.dart';
 
 class ComprarEntradasPage extends StatefulWidget {
   const ComprarEntradasPage({key});
@@ -83,14 +82,6 @@ class _ComprarEntradasPageState extends State<ComprarEntradasPage> {
                       },
                       child: Text('Comprar'),
                     ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetalleCompraPage(
-                                  evento['nom_evento'],
-                                  evento['precio_entrada'])));
-                    },
                   );
                 },
               );
