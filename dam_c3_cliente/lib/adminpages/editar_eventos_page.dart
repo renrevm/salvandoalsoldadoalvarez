@@ -11,16 +11,38 @@ class EditarEventosPage extends StatefulWidget {
   State<EditarEventosPage> createState() => _EditarEventosPageState();
 }
 
+//Toggle button
+const double width = 400.0;
+const double height = 50.0;
+const double loginAlign = -1;
+const double signInAlign = 1;
+const Color selectedColor = Colors.black54;
+const Color normalColor = Colors.white;
+
 class _EditarEventosPageState extends State<EditarEventosPage> {
   TextEditingController codigoCtrl = TextEditingController();
   TextEditingController nom_eventoCtrl = TextEditingController();
   TextEditingController precio_entradaCtrl = TextEditingController();
   TextEditingController estado_eventoCtrl = TextEditingController();
+  String estado = 'Activo';
 
   String errCodigo = '';
   String errNombre = '';
   String errPrecio = '';
   String errEstadp = '';
+
+  //Toggle Button
+  late double xAlign;
+  late Color loginColor;
+  late Color signInColor;
+
+  @override
+  void initState() {
+    super.initState();
+    xAlign = loginAlign;
+    loginColor = selectedColor;
+    signInColor = normalColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +106,7 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
                               mostrarError(errNombre),
                               campoprecio_entrada(),
                               mostrarError(errPrecio),
-                              campoestado_evento(),
+                              ToggleButton(),
                               botonEditar(),
                             ],
                           ),
@@ -184,7 +206,7 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
           String nom_evento = nom_eventoCtrl.text.trim();
           int precio_entrada =
               int.tryParse(precio_entradaCtrl.text.trim()) ?? 0;
-          int estado_evento = int.tryParse(estado_eventoCtrl.text.trim()) ?? 0;
+          String estado_evento = estado;
 
           //enviar por post al api
 
@@ -208,6 +230,93 @@ class _EditarEventosPageState extends State<EditarEventosPage> {
           //redireccionar a pagina que lista productos
           Navigator.pop(context);
         },
+      ),
+    );
+  }
+
+  Container ToggleButton() {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: Color(kPrimaryColor),
+        borderRadius: BorderRadius.all(
+          Radius.circular(50.0),
+        ),
+      ),
+      child: Stack(
+        children: [
+          AnimatedAlign(
+            alignment: Alignment(xAlign, 0),
+            duration: Duration(milliseconds: 300),
+            child: Container(
+              width: width * 0.5,
+              height: height,
+              decoration: BoxDecoration(
+                color: Color(kAccentColor1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50.0),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                xAlign = loginAlign;
+                loginColor = selectedColor;
+
+                signInColor = normalColor;
+                //Admin
+                estado = 'Activo';
+              });
+            },
+            child: Align(
+              alignment: Alignment(-1, 0),
+              child: Container(
+                width: width * 0.5,
+                color: Colors.transparent,
+                alignment: Alignment.center,
+                child: Text(
+                  'Activo',
+                  style: TextStyle(
+                    color: loginColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                xAlign = signInAlign;
+                signInColor = selectedColor;
+
+                loginColor = normalColor;
+                //Cliente
+                estado = 'Inactivo';
+              });
+            },
+            child: Align(
+              alignment: Alignment(1, 0),
+              child: Container(
+                width: width * 0.5,
+                color: Colors.transparent,
+                alignment: Alignment.center,
+                child: Text(
+                  'Inactivo',
+                  style: TextStyle(
+                    color: signInColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

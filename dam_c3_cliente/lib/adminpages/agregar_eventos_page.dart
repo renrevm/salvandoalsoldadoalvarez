@@ -12,16 +12,38 @@ class AgregarEventosPage extends StatefulWidget {
   State<AgregarEventosPage> createState() => _AgregarEventosPageState();
 }
 
+//Toggle button
+const double width = 400.0;
+const double height = 50.0;
+const double loginAlign = -1;
+const double signInAlign = 1;
+const Color selectedColor = Colors.black54;
+const Color normalColor = Colors.white;
+
 class _AgregarEventosPageState extends State<AgregarEventosPage> {
   TextEditingController codigoCtrl = TextEditingController();
   TextEditingController nombreCtrl = TextEditingController();
   TextEditingController precioCtrl = TextEditingController();
   TextEditingController estadoCtrl = TextEditingController();
+  String estado = 'Activo';
 
   String errCodigo = '';
   String errNombre = '';
   String errPrecio = '';
   String errEstadp = '';
+
+  //Toggle Button
+  late double xAlign;
+  late Color loginColor;
+  late Color signInColor;
+
+  @override
+  void initState() {
+    super.initState();
+    xAlign = loginAlign;
+    loginColor = selectedColor;
+    signInColor = normalColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +86,7 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
                   mostrarError(errNombre),
                   campoPrecio(),
                   mostrarError(errPrecio),
+                  ToggleButton(),
                   // campoEstado(),
                   // mostrarError(errStock),
                   botonAgregar(),
@@ -159,7 +182,7 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
           String cod_evento = codigoCtrl.text.trim();
           String nom_evento = nombreCtrl.text.trim();
           int precio_entrada = int.tryParse(precioCtrl.text.trim()) ?? 0;
-          int estado_evento = int.tryParse(estadoCtrl.text.trim()) ?? 0;
+          String estado_evento = estado;
 
           //enviar por post al api
           var respuesta = await EventosProvider()
@@ -183,6 +206,94 @@ class _AgregarEventosPageState extends State<AgregarEventosPage> {
           //redireccionar a pagina que lista
           Navigator.pop(context);
         },
+      ),
+    );
+  }
+
+  //Toggle Button
+  Container ToggleButton() {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: Color(kPrimaryColor),
+        borderRadius: BorderRadius.all(
+          Radius.circular(50.0),
+        ),
+      ),
+      child: Stack(
+        children: [
+          AnimatedAlign(
+            alignment: Alignment(xAlign, 0),
+            duration: Duration(milliseconds: 300),
+            child: Container(
+              width: width * 0.5,
+              height: height,
+              decoration: BoxDecoration(
+                color: Color(kAccentColor1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50.0),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                xAlign = loginAlign;
+                loginColor = selectedColor;
+
+                signInColor = normalColor;
+                //Admin
+                estado = 'Activo';
+              });
+            },
+            child: Align(
+              alignment: Alignment(-1, 0),
+              child: Container(
+                width: width * 0.5,
+                color: Colors.transparent,
+                alignment: Alignment.center,
+                child: Text(
+                  'Activo',
+                  style: TextStyle(
+                    color: loginColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                xAlign = signInAlign;
+                signInColor = selectedColor;
+
+                loginColor = normalColor;
+                //Cliente
+                estado = 'Inactivo';
+              });
+            },
+            child: Align(
+              alignment: Alignment(1, 0),
+              child: Container(
+                width: width * 0.5,
+                color: Colors.transparent,
+                alignment: Alignment.center,
+                child: Text(
+                  'Inactivo',
+                  style: TextStyle(
+                    color: signInColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

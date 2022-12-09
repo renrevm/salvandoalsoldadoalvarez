@@ -17,7 +17,7 @@ class EventosProvider {
   }
 
   Future<LinkedHashMap<String, dynamic>> agregar(String cod_evento,
-      String nom_evento, int precio_entrada, int estado_evento) async {
+      String nom_evento, int precio_entrada, String estado_evento) async {
     var respuesta = await http.post(
       Uri.parse(apiURL + '/eventos'),
       headers: <String, String>{
@@ -57,7 +57,7 @@ class EventosProvider {
       String cod_evento_new,
       String nom_evento,
       int precio_entrada,
-      int estado_evento) async {
+      String estado_evento) async {
     var respuesta = await http.put(
       Uri.parse(apiURL + '/eventos/' + cod_evento_act),
       headers: <String, String>{
