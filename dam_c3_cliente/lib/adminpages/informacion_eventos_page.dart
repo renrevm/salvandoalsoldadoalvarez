@@ -1,9 +1,14 @@
 // ignore_for_file: deprecated_member_use
 
-//import 'package:dam_c3_cliente/pages/menu_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../componentes/cartel_informacion_comps.dart';
+import '../clientpages/detalle_entrada_page.dart';
+import '../constant.dart';
+import '../providers/ventas_provider.dart';
+import '../widgets/datos_usuario.dart';
+import '../widgets/get_color.dart';
 
 // ignore: must_be_immutable
 class InformacionEventosPage extends StatefulWidget {
@@ -14,87 +19,80 @@ class InformacionEventosPage extends StatefulWidget {
 }
 
 class _InformacionEventosPageState extends State<InformacionEventosPage> {
-  //int paginaSel = 0;
-  //final paginas = [InformacionEventosPage(),EditarEventosPage(), BorrarEventosPage()];
+  final fPrecio =
+      NumberFormat.currency(decimalDigits: 0, locale: 'es-CL', symbol: '');
+  //correo cliente
+  final correo = DatosUsuario.getCorreo().toString().trim();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: ListView(
-        
-        children: <Widget>[
-          CartelInformacionComps(),
-        ],
-      ),
-      //bottomNavigationBar: this.navInferior(),
-    );
-  }
-
-  // BottomNavigationBar navInferior(){
-  //   return BottomNavigationBar(
-      
-  //     currentIndex: paginaSel,
-  //     onTap: (index) {
-  //         //print('Tap: ' + index.toString()); //Imprime en la consola el index
-  //         setState(() {
-  //           paginaSel = index;
-  //         });
-  //       },
-  //     backgroundColor: Colors.black,
-  //     type: BottomNavigationBarType.fixed,
-  //     selectedItemColor: Color.fromARGB(255, 202, 71, 209),
-  //     unselectedItemColor: Colors.white,
-  //     iconSize: 25.0,
-  //     selectedFontSize: 14.0,
-  //     unselectedFontSize: 12.0,
-  //     items: <BottomNavigationBarItem>[
-  //       BottomNavigationBarItem(
-  //         icon: Icon(Icons.shop),
-  //         label: ('Noticias')         
-  //       ),
-  //         BottomNavigationBarItem(
-  //         icon: Icon(Icons.list),
-  //         label: ('Eventos')         
-  //       ),
-  //         BottomNavigationBarItem(
-  //         icon: Icon(Icons.newspaper),
-  //         label: ('Entradas')         
-  //       ),
-  //     ],
-  //   );
-
-  
-
-  Widget listahorizontal(String titulo, Widget item, int cantidad){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal:6.0,vertical: 10.0),
-          child: Text(
-            titulo,
-            style: TextStyle(color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          
-          ),),
-        ),
-
-          Container(
-            height: 110.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: cantidad,
-              
-              itemBuilder: (context, index) {
-                return item;
-              } ,
+      body: Container(
+        child: Stack(
+          children: <Widget>[
+            Image.network(
+              "https://www.todofondos.net/wp-content/uploads/Fondo-de-pantalla-astronauta-espacial-1920x1080-1-1024x576.jpg",
+              height: 800.0,
+              fit: BoxFit.cover,
             ),
-          ),
+            Container(
+              width: double.infinity,
+              height: 800.0,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.center,
+                      end: Alignment.bottomCenter,
+                      colors: <Color>[
+                    Colors.black26,
+                    Colors.black,
+                  ])),
+              child: FutureBuilder(
+                future: VentasProvider().getVenta(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
 
-      ],
-
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => Divider(
+                      thickness: 1.3,
+                    ),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      var venta = snapshot.data[index];
+                      return ListTile(
+                        leading: Icon(MdiIcons.ticketConfirmation),
+                        //leading: Text(correo),
+                        iconColor: Color(kSecundaryColor),
+                        trailing: Text(venta['total'].toString()),
+                        title: Text(
+                          '${venta['codevento']}',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        textColor: Colors.white,
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: ElevatedButton(
+      //   style: ButtonStyle(
+      //     foregroundColor: getColor(Colors.white, Colors.yellow),
+      //     backgroundColor:
+      //         getColor(Color.fromARGB(255, 140, 25, 155), Colors.black),
+      //   ),
+      //   child: Text('Ver detalle de entrada'),
+      //   onPressed: () => {
+      //     Navigator.push(context,
+      //         MaterialPageRoute(builder: (context) => DetalleEntradaPage(2))),
+      //   },
+      // ),
     );
   }
 }

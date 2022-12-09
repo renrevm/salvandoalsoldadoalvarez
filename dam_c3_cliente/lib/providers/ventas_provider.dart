@@ -35,9 +35,9 @@ class VentasProvider {
   }
 
   Future<LinkedHashMap<String, dynamic>> getVentaEntrada(
-      String cod_evento) async {
+      String codevento) async {
     var respuesta =
-        await http.get(Uri.parse(apiURL + '/eventos/' + cod_evento));
+        await http.get(Uri.parse(apiURL + '/ventaentradas/' + codevento));
     if (respuesta.statusCode == 200) {
       return json.decode(respuesta.body);
     } else {
